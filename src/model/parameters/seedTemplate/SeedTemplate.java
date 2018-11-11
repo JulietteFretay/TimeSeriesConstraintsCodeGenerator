@@ -1,4 +1,4 @@
-package model.parameters;
+package model.parameters.seedTemplate;
 
 import java.util.ArrayList;
 

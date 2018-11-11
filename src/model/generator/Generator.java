@@ -1,7 +1,7 @@
 package model.generator;
 
-import model.parameters.DecorationTable;
-import model.parameters.SeedTemplate;
+import model.parameters.decorationTable.DecorationTable;
+import model.parameters.seedTemplate.SeedTemplate;
 
 public class Generator {
 
