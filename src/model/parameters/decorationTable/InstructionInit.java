@@ -1,23 +1,24 @@
 package model.parameters.decorationTable;
 
-public class Update {
+public class InstructionInit {
 	private String var;
-	private String value;
+	private String init;
+	
 	public String getVar() {
 		return var;
 	}
 	public void setVar(String var) {
 		this.var = var;
 	}
-	public String getValue() {
-		return value;
+	public String getInit() {
+		return init;
 	}
-	public void setValue(String value) {
-		this.value = value;
+	public void setInit(String init) {
+		this.init = init;
 	}
 	@Override
 	public String toString() {
-		return "(var=" + var + ", value=" + value + ") ";
+		return "(var=" + var + ", init=" + init + ")";
 	}
 	
 	

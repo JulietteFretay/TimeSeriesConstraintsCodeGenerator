@@ -1,13 +1,20 @@
 package model.parameters.decorationTable;
 
-public class Update {
+public class InstructionFinal {
 	private String var;
+	private String index;
 	private String value;
 	public String getVar() {
 		return var;
 	}
 	public void setVar(String var) {
 		this.var = var;
+	}
+	public String getIndex() {
+		return index;
+	}
+	public void setIndex(String index) {
+		this.index = index;
 	}
 	public String getValue() {
 		return value;
@@ -17,8 +24,9 @@ public class Update {
 	}
 	@Override
 	public String toString() {
-		return "(var=" + var + ", value=" + value + ") ";
+		return "(var=" + var + ", index=" + index + ", value=" + value + ")";
 	}
 	
 	
+
 }
