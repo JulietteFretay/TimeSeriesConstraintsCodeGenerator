@@ -11,10 +11,12 @@ import model.parameters.decorationTable.DecorationTable;
 
 
 public class DecorationTableParser {
-	public static void main(String[] args){
+	public static DecorationTable parseDecorationTable(String file){
 		ObjectMapper mapper = new ObjectMapper();
+		DecorationTable table = null;
 		try {
-			DecorationTable table = mapper.readValue(new File("Documents/FootprintDecorationTable.json"), DecorationTable.class);
+			//DecorationTable table = mapper.readValue(new File("Documents/FootprintDecorationTable.json"), DecorationTable.class);
+			table = mapper.readValue(new File(file), DecorationTable.class);
 			System.out.println(table);
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
@@ -26,5 +28,6 @@ public class DecorationTableParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return table;
 	}
 }

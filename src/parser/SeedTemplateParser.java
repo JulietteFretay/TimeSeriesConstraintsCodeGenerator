@@ -11,10 +11,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.parameters.seedTemplate.SeedTemplate;
 
 public class SeedTemplateParser {
-	public static void main(String[] args){
+	public static SeedTemplate parseSeedTemplate(String file){
 		ObjectMapper mapper = new ObjectMapper();
+		SeedTemplate seed = null;
 		try {
-			SeedTemplate seed = mapper.readValue(new File("Documents/DecreasingSeedTemplate.json"), SeedTemplate.class);
+			//SeedTemplate seed = mapper.readValue(new File("Documents/DecreasingSeedTemplate.json"), SeedTemplate.class);
+			seed = mapper.readValue(new File(file), SeedTemplate.class);
 			System.out.println(seed);
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
@@ -26,5 +28,6 @@ public class SeedTemplateParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return seed;
 	}
 }

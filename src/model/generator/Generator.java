@@ -8,4 +8,12 @@ public class Generator {
 	public Generator(DecorationTable decorationTable, SeedTemplate seedTemplate){
 		
 	}
+	
+	public void seeCodeInConsole(){
+		
+	}
+	
+	public void saveCodeInFile(String fileName){
+		
+	}
 }

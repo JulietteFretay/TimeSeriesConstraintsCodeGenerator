@@ -33,7 +33,7 @@ public class InstructionTable {
 	}
 	@Override
 	public String toString() {
-		return "(" + step + ", " + after + ", " + guards + ", " + updates
+		return "( \n" + step + ", " +  after + ", " + guards + ", " + updates
 				+ ")";
 	}
 	

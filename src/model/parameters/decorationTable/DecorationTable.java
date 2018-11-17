@@ -35,7 +35,7 @@ public class DecorationTable {
 	@Override
 	public String toString() {
 		return "DecorationTable ( \n name=" + name + ", \n instructionsInit=" + instructionsInit + ", \n instructionsFinal="
-				+ instructionsFinal + ",\n instructionsTable=" + instructionsTable + ")";
+				+ instructionsFinal + ",\n instructionsTable=" + instructionsTable + "\n  )";
 	}
 
 	
