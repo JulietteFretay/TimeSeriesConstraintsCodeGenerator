@@ -23,6 +23,12 @@ public class Arc {
 			res = ">";
 		}else if(this.sig.equals("leq")){
 			res = "<=";			
+		}else if(this.sig.equals("eq")){
+			res = "=";			
+		}else if(this.sig.equals("lt")){
+			res = "<";			
+		}else if(this.sig.equals("geq")){
+			res = ">=";			
 		}
 		return res;
 	}
