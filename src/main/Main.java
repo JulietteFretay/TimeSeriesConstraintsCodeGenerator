@@ -30,7 +30,7 @@ public class Main {
 		SeedTemplate seed = SeedTemplateParser.parseSeedTemplate(fileSeedTemplate);
 		System.out.println("Lancement de la generation de code");
 		Generator generator = new Generator(table,seed);
-	
+		generator.seeCodeInConsole();
 	
 	
 	}
