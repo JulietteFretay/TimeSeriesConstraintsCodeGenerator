@@ -17,6 +17,15 @@ public class Arc {
 	public void setSig(String sig) {
 		this.sig = sig;
 	}
+	public String getSigLabel() {
+		String res = this.sig;
+		if(this.sig.equals("gt")){
+			res = ">";
+		}else if(this.sig.equals("leq")){
+			res = "<=";			
+		}
+		return res;
+	}
 	public String getTo() {
 		return to;
 	}

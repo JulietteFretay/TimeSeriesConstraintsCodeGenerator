@@ -1,10 +1,10 @@
 package calculator;
 
-public class SignsGenerator {
+public class SignsCalculator {
 	
 	int[] timeSerie;
 
-	public SignsGenerator(int[] timeSerie){
+	public SignsCalculator(int[] timeSerie){
 		
 		this.timeSerie = timeSerie;
 	}
