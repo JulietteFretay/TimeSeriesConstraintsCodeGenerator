@@ -3,7 +3,7 @@ package model.parameters.decorationTable;
 public class Update {
 	private String var;
 	private String value;
-	private int index;
+	private String index;
 	private Boolean useOther;
 	private String indexOther;
 	private String addValue;
@@ -23,10 +23,10 @@ public class Update {
 	public String toString() {
 		return "(var=" + var + ", value=" + value + ") ";
 	}
-	public int getIndex() {
+	public String getIndex() {
 		return index;
 	}
-	public void setIndex(int index) {
+	public void setIndex(String index) {
 		this.index = index;
 	}
 	public Boolean getUseOther() {

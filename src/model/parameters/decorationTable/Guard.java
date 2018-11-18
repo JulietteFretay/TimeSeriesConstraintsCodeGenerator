@@ -5,7 +5,7 @@ public class Guard {
 	private String index;
 	private String value;
 	private Boolean useOther;
-	private int indexOther;
+	private String indexOther;
 	private String addValue;
 	public String getVar() {
 		return var;
@@ -35,10 +35,10 @@ public class Guard {
 	public void setUseOther(Boolean useOther) {
 		this.useOther = useOther;
 	}
-	public int getIndexOther() {
+	public String getIndexOther() {
 		return indexOther;
 	}
-	public void setIndexOther(int indexOther) {
+	public void setIndexOther(String indexOther) {
 		this.indexOther = indexOther;
 	}
 	public String getAddValue() {

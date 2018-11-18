@@ -22,7 +22,7 @@ public class Generator {
 		generatorTimeSerieStates = new GeneratorTimeSerieStates(seedTemplate);
 		generatorTimeSerieLetters = new GeneratorTimeSerieLetters(seedTemplate);
 		generatorTimeSerieCounters = new GeneratorTimeSerieCounters(seedTemplate,decorationTable);
-		generatorTimeSerieResults = new GeneratorTimeSerieResults(seedTemplate);
+		generatorTimeSerieResults = new GeneratorTimeSerieResults(seedTemplate,decorationTable);
 		//Class
 		generateCodeBuffer.append("import java.util.ArrayList; \n");
 		generateCodeBuffer.append("import java.util.HashMap; \n");
@@ -39,6 +39,7 @@ public class Generator {
 		generateCodeBuffer.append("\tprivate String[] timeSerieStates; \n");
 		generateCodeBuffer.append("\tprivate String[] timeSerieLetters; \n");
 		generateCodeBuffer.append("\tprivate HashMap<String, ArrayList<Integer>> timeSerieCounters; \n");
+		generateCodeBuffer.append("\tprivate HashMap<String, Integer> currentCounters; \n");
 
 		//Get Result 
 		generateCodeBuffer.append("\tpublic void getResultForATimeSerie(int[] timeSerie) {\n");		
@@ -53,9 +54,10 @@ public class Generator {
 		generateCodeBuffer.append("\t\tthis.timeSerieStates[0] = \"" + seedTemplate.getStartingState() + "\";\n");
 		generateCodeBuffer.append("\t\tthis.timeSerieLetters = new String[nbElements-1];\n");		
 		generateCodeBuffer.append("\t\tthis.timeSerieCounters = new HashMap<String, ArrayList<Integer>>();\n");		
+		generateCodeBuffer.append("\t\tthis.currentCounters = new HashMap<String, Integer>() ;\n");	
 		for(InstructionFinal instruction : decorationTable.getInstructionsFinal()){
 			generateCodeBuffer.append("\t\tArrayList<Integer> resultList = new ArrayList<Integer>();\n");
-			generateCodeBuffer.append("\t\tfor(int i = 0; i < timeSerie.length; i++) {\n");
+			generateCodeBuffer.append("\t\tfor(int i = 0; i < timeSerie.length-1; i++) {\n");
 			generateCodeBuffer.append("\t\t\tresultList.add(new Integer(0));\n");
 			generateCodeBuffer.append("\t\t}\n");
 			generateCodeBuffer.append("\t\tthis.timeSerieResults.put(\""+instruction.getVar()+"\",resultList);\n");	
@@ -63,10 +65,11 @@ public class Generator {
 		for(InstructionInit instruction : decorationTable.getInstructionsInit()){
 			generateCodeBuffer.append("\t\tArrayList<Integer> counterList = new ArrayList<Integer>();\n");
 			generateCodeBuffer.append("\t\t\tcounterList.add(new Integer("+instruction.getInit()+"));\n");
-			generateCodeBuffer.append("\t\tfor(int i = 0; i < timeSerie.length -1; i++) {\n");
+			generateCodeBuffer.append("\t\tfor(int i = 0; i < timeSerie.length-2; i++) {\n");
 			generateCodeBuffer.append("\t\t\tcounterList.add(new Integer(0));\n");
 			generateCodeBuffer.append("\t\t}\n");
 			generateCodeBuffer.append("\t\tthis.timeSerieCounters.put(\""+instruction.getVar()+"\",counterList);\n");	
+			generateCodeBuffer.append("\t\tthis.currentCounters.put(\""+instruction.getVar()+"\",0);\n");	
 		}
 		
 		//generateCodeBuffer.append("\t\twhile(this.currentSignIndex < timeSerieSigns.length - 1) {\n");
@@ -97,12 +100,17 @@ public class Generator {
 		generateCodeBuffer.append("\t\t\tthis.currentValueIndex ++;\n");	
 		generateCodeBuffer.append("\t\t\tthis.currentSignIndex ++;\n");
 		generateCodeBuffer.append("\t\t}\n");	
-		generateCodeBuffer.append("\t\tthis.currentValueIndex = 0;\n");
-		generateCodeBuffer.append("\t\tthis.currentSignIndex = 0;\n");
+		generateCodeBuffer.append("\t\tthis.currentValueIndex = this.timeSerie.length-2;\n");
+		generateCodeBuffer.append("\t\tthis.currentSignIndex = this.timeSerie.length-2;\n");
 		generateCodeBuffer.append("\t\tSystem.out.println(\"TimeSerie Counters : \"+this.timeSerieCounters);\n");	
 
 		generatorTimeSerieResults.setIndentation("\t\t");
+		generateCodeBuffer.append("\t\twhile(this.currentSignIndex >=0){\n");	
 		generatorTimeSerieResults.append(generateCodeBuffer);
+		generateCodeBuffer.append("\t\t\tthis.currentValueIndex --;\n");	
+		generateCodeBuffer.append("\t\t\tthis.currentSignIndex --;\n");
+		generateCodeBuffer.append("\t\t}\n");	
+		
 		generateCodeBuffer.append("\t\tSystem.out.println(\"TimeSerie Results : \"+this.timeSerieResults);\n");	
 
 		

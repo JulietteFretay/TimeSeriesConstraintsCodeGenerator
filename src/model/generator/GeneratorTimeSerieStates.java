@@ -13,9 +13,17 @@ public class GeneratorTimeSerieStates {
 	}
 
 	public void append(StringBuffer generateCodeBuffer) {
+		
+		boolean isFirstIf = true;
+		
 		generateCodeBuffer.append(this.indentation+"//Code timeSerie states \n");
 		for(Arc arc :this.seedTemplate.getLinks()) {
-			generateCodeBuffer.append(this.indentation+"if (this.currentState.equals(\""+arc.getFrom()+"\") &  \""+arc.getSigLabel()+"\".contains(this.timeSerieSigns[currentSignIndex])){\n");
+			if (isFirstIf) {
+				generateCodeBuffer.append(this.indentation+"if (this.currentState.equals(\""+arc.getFrom()+"\") && \""+arc.getSigLabel()+"\".contains(this.timeSerieSigns[currentSignIndex])){\n");
+				isFirstIf = false;
+			} else {
+				generateCodeBuffer.append(this.indentation+"else if (this.currentState.equals(\""+arc.getFrom()+"\") && \""+arc.getSigLabel()+"\".contains(this.timeSerieSigns[currentSignIndex])){\n");
+			}
 			generateCodeBuffer.append(this.indentation+"\tthis.timeSerieStates[currentValueIndex] = \""+arc.getTo()+"\";\n");
 			generateCodeBuffer.append(this.indentation+"\tthis.timeSerieLetters[currentSignIndex] = \""+arc.getLetter()+"\";\n");
 			generateCodeBuffer.append(this.indentation+"\tthis.currentState = this.timeSerieStates[currentValueIndex] ;\n");

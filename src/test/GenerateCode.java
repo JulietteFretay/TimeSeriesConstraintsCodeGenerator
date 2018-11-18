@@ -12,6 +12,7 @@ public class GenerateCode {
 	private String[] timeSerieStates; 
 	private String[] timeSerieLetters; 
 	private HashMap<String, ArrayList<Integer>> timeSerieCounters; 
+	private HashMap<String, Integer> currentCounters; 
 	public void getResultForATimeSerie(int[] timeSerie) {
 		this.timeSerieResults = new HashMap<String, ArrayList<Integer>>();
 		this.timeSerie = timeSerie;
@@ -23,17 +24,19 @@ public class GenerateCode {
 		this.timeSerieStates[0] = "d";
 		this.timeSerieLetters = new String[nbElements-1];
 		this.timeSerieCounters = new HashMap<String, ArrayList<Integer>>();
+		this.currentCounters = new HashMap<String, Integer>() ;
 		ArrayList<Integer> resultList = new ArrayList<Integer>();
-		for(int i = 0; i < timeSerie.length; i++) {
+		for(int i = 0; i < timeSerie.length-1; i++) {
 			resultList.add(new Integer(0));
 		}
 		this.timeSerieResults.put("p",resultList);
 		ArrayList<Integer> counterList = new ArrayList<Integer>();
 			counterList.add(new Integer(0));
-		for(int i = 0; i < timeSerie.length -1; i++) {
+		for(int i = 0; i < timeSerie.length-2; i++) {
 			counterList.add(new Integer(0));
 		}
 		this.timeSerieCounters.put("C",counterList);
+		this.currentCounters.put("C",0);
 		//Code timeSerie signs 
 		this.timeSerieSigns = new String[nbElements - 1];
 		for (int i = 0; i < nbElements - 1; i++) {
@@ -49,37 +52,37 @@ public class GenerateCode {
 		this.currentValueIndex = 1;
 		while(this.currentValueIndex < this.timeSerie.length){
 		//Code timeSerie states 
-		if (this.currentState.equals("d") &  ">=".contains(this.timeSerieSigns[currentSignIndex])){
+		if (this.currentState.equals("d") && ">=".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "d";
 			this.timeSerieLetters[currentSignIndex] = "out";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("d") &  "<".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("d") && "<".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "r";
 			this.timeSerieLetters[currentSignIndex] = "out";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("r") &  ">".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("r") && ">".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "t";
 			this.timeSerieLetters[currentSignIndex] = "found";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("r") &  "<=".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("r") && "<=".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "r";
 			this.timeSerieLetters[currentSignIndex] = "maybeB";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("t") &  ">".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("t") && ">".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "t";
 			this.timeSerieLetters[currentSignIndex] = "in";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("t") &  "=".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("t") && "=".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "t";
 			this.timeSerieLetters[currentSignIndex] = "maybeA";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("t") &  "<".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("t") && "<".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "r";
 			this.timeSerieLetters[currentSignIndex] = "outA";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
@@ -96,38 +99,99 @@ public class GenerateCode {
 		while(this.currentSignIndex < this.timeSerie.length-1){
 		//Code timeSerie counters 
 		if(this.timeSerieLetters[currentSignIndex].equals( "out")){ 
-		this.timeSerieResults.get("p").set(this.currentValueIndex,0); 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,0); 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "outR")){ 
-		this.timeSerieResults.get("p").set(this.currentValueIndex,0); 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,0); 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "outA")){ 
-		this.timeSerieResults.get("p").set(this.currentValueIndex,0); 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,0); 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "maybeB")){ 
-		this.timeSerieResults.get("p").set(this.currentValueIndex,1); 
+		if(this.timeSerieResults.get("p") != null ){ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentSignIndex+1)); 
+		}else{ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("p").get(this.currentSignIndex+1)); 
+		} 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")){ 
-		this.timeSerieResults.get("p").set(this.currentValueIndex,1); 
+		if(this.timeSerieResults.get("p") != null ){ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentSignIndex+1)); 
+		}else{ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("p").get(this.currentSignIndex+1)); 
+		} 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
-		//this.timeSerieResults.get("p").set(this.currentValueIndex,C+1); 
-		//this.timeSerieCounters.get("C").set(this.currentValueIndex,C+1); 
+		if(this.timeSerieResults.get("C") != null ){ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentSignIndex+0)+1); 
+		}else{ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("C").get(this.currentSignIndex+0)+1); 
+		} 
+		this.currentCounters.replace("C",this.currentCounters.get("C")+1); 
+		for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
+		this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
+		} 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "found")){ 
-		//this.timeSerieResults.get("p").set(this.currentValueIndex,C+1); 
-		//this.timeSerieCounters.get("C").set(this.currentValueIndex,C+1); 
+		if(this.timeSerieResults.get("C") != null ){ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentSignIndex+0)+1); 
+		}else{ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("C").get(this.currentSignIndex+0)+1); 
+		} 
+		this.currentCounters.replace("C",this.currentCounters.get("C")+1); 
+		for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
+		this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
+		} 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "in")){ 
-		//this.timeSerieResults.get("p").set(this.currentValueIndex,C); 
+		if(this.timeSerieResults.get("C") != null ){ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentSignIndex+0)); 
+		}else{ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("C").get(this.currentSignIndex+0)); 
+		} 
 		} 
 			this.currentValueIndex ++;
 			this.currentSignIndex ++;
 		}
-		this.currentValueIndex = 0;
-		this.currentSignIndex = 0;
+		this.currentValueIndex = this.timeSerie.length-2;
+		this.currentSignIndex = this.timeSerie.length-2;
 		System.out.println("TimeSerie Counters : "+this.timeSerieCounters);
+		while(this.currentSignIndex >=0){
 		//Code timeSerie results 
+		if(this.timeSerieLetters[currentSignIndex].equals( "out")){ 
+		} 
+		if(this.timeSerieLetters[currentSignIndex].equals( "outR")){ 
+		} 
+		if(this.timeSerieLetters[currentSignIndex].equals( "outA")){ 
+		} 
+		if(this.timeSerieLetters[currentSignIndex].equals( "maybeB")){ 
+		if(this.timeSerieResults.get("p") != null ){ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
+		} 
+		} 
+		if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")){ 
+		if(this.timeSerieResults.get("p") != null ){ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
+		} 
+		} 
+		if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
+		if(this.timeSerieResults.get("C") != null ){ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)+1); 
+		} 
+		} 
+		if(this.timeSerieLetters[currentSignIndex].equals( "found")){ 
+		if(this.timeSerieResults.get("C") != null ){ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)+1); 
+		} 
+		} 
+		if(this.timeSerieLetters[currentSignIndex].equals( "in")){ 
+		if(this.timeSerieResults.get("C") != null ){ 
+		this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)); 
+		} 
+		} 
+			this.currentValueIndex --;
+			this.currentSignIndex --;
+		}
 		System.out.println("TimeSerie Results : "+this.timeSerieResults);
 	}
 //Code list to string 
@@ -149,3 +213,6 @@ public class GenerateCode {
 		return res;
 	}
 }
+
+
+
