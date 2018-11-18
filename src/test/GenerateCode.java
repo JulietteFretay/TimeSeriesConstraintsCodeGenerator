@@ -43,37 +43,37 @@ public class GenerateCode {
 		this.currentValueIndex = 1;
 		while(this.currentValueIndex < this.timeSerie.length){
 		//Code timeSerie states 
-		if (this.currentState.equals("d") &  ">=".contains(this.timeSerieSigns[currentSignIndex])){
+		if (this.currentState.equals("d") && ">=".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "d";
 			this.timeSerieLetters[currentSignIndex] = "out";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("d") &  "<".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("d") && "<".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "r";
 			this.timeSerieLetters[currentSignIndex] = "out";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("r") &  ">".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("r") && ">".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "t";
 			this.timeSerieLetters[currentSignIndex] = "found";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("r") &  "<=".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("r") && "<=".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "r";
 			this.timeSerieLetters[currentSignIndex] = "maybeB";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("t") &  ">".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("t") && ">".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "t";
 			this.timeSerieLetters[currentSignIndex] = "in";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("t") &  "=".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("t") && "=".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "t";
 			this.timeSerieLetters[currentSignIndex] = "maybeA";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
 		}
-		if (this.currentState.equals("t") &  "<".contains(this.timeSerieSigns[currentSignIndex])){
+		else if (this.currentState.equals("t") && "<".contains(this.timeSerieSigns[currentSignIndex])){
 			this.timeSerieStates[currentValueIndex] = "r";
 			this.timeSerieLetters[currentSignIndex] = "outA";
 			this.currentState = this.timeSerieStates[currentValueIndex] ;
@@ -141,5 +141,3 @@ public class GenerateCode {
 		return res;
 	}
 }
-
-
