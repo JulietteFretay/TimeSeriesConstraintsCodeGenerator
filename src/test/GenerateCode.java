@@ -11,7 +11,7 @@ public class GenerateCode {
 	private String[] timeSerieSigns; 
 	private String[] timeSerieStates; 
 	private String[] timeSerieLetters; 
-	private int[] timeSerieCounters; 
+	private HashMap<String, ArrayList<Integer>> timeSerieCounters; 
 	public void getResultForATimeSerie(int[] timeSerie) {
 		this.timeSerieResults = new HashMap<String, ArrayList<Integer>>();
 		this.timeSerie = timeSerie;
@@ -22,12 +22,18 @@ public class GenerateCode {
 		this.timeSerieStates = new String[nbElements];
 		this.timeSerieStates[0] = "d";
 		this.timeSerieLetters = new String[nbElements-1];
-		this.timeSerieCounters = new int[nbElements-1];
+		this.timeSerieCounters = new HashMap<String, ArrayList<Integer>>();
 		ArrayList<Integer> resultList = new ArrayList<Integer>();
 		for(int i = 0; i < timeSerie.length; i++) {
 			resultList.add(new Integer(0));
 		}
-		this.timeSerieResults.put("F",resultList);
+		this.timeSerieResults.put("p",resultList);
+		ArrayList<Integer> counterList = new ArrayList<Integer>();
+			counterList.add(new Integer(0));
+		for(int i = 0; i < timeSerie.length -1; i++) {
+			counterList.add(new Integer(0));
+		}
+		this.timeSerieCounters.put("C",counterList);
 		//Code timeSerie signs 
 		this.timeSerieSigns = new String[nbElements - 1];
 		for (int i = 0; i < nbElements - 1; i++) {
@@ -90,35 +96,37 @@ public class GenerateCode {
 		while(this.currentSignIndex < this.timeSerie.length-1){
 		//Code timeSerie counters 
 		if(this.timeSerieLetters[currentSignIndex].equals( "out")){ 
-		this.timeSerieResults.get("F").set(this.currentValueIndex,0); 
+		this.timeSerieResults.get("p").set(this.currentValueIndex,0); 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "outR")){ 
-		this.timeSerieResults.get("F").set(this.currentValueIndex,0); 
+		this.timeSerieResults.get("p").set(this.currentValueIndex,0); 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "outA")){ 
-		this.timeSerieResults.get("F").set(this.currentValueIndex,0); 
+		this.timeSerieResults.get("p").set(this.currentValueIndex,0); 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "maybeB")){ 
-		this.timeSerieResults.get("F").set(this.currentValueIndex,1); 
+		this.timeSerieResults.get("p").set(this.currentValueIndex,1); 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")){ 
-		this.timeSerieResults.get("F").set(this.currentValueIndex,1); 
+		this.timeSerieResults.get("p").set(this.currentValueIndex,1); 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
-		//this.timeSerieResults.get("F").set(this.currentValueIndex,C+1); 
+		//this.timeSerieResults.get("p").set(this.currentValueIndex,C+1); 
+		//this.timeSerieCounters.get("C").set(this.currentValueIndex,C+1); 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "found")){ 
-		//this.timeSerieResults.get("F").set(this.currentValueIndex,C+1); 
+		//this.timeSerieResults.get("p").set(this.currentValueIndex,C+1); 
+		//this.timeSerieCounters.get("C").set(this.currentValueIndex,C+1); 
 		} 
 		if(this.timeSerieLetters[currentSignIndex].equals( "in")){ 
-		//this.timeSerieResults.get("F").set(this.currentValueIndex,C); 
+		//this.timeSerieResults.get("p").set(this.currentValueIndex,C); 
 		} 
 			this.currentValueIndex ++;
 			this.currentSignIndex ++;
 		}
 		this.currentValueIndex = 0;
 		this.currentSignIndex = 0;
-		System.out.println("TimeSerie Counters : "+this.listToString(timeSerieCounters));
+		System.out.println("TimeSerie Counters : "+this.timeSerieCounters);
 		//Code timeSerie results 
 		System.out.println("TimeSerie Results : "+this.timeSerieResults);
 	}
@@ -141,5 +149,3 @@ public class GenerateCode {
 		return res;
 	}
 }
-
-

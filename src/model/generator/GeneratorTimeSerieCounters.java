@@ -3,6 +3,7 @@ package model.generator;
 import model.parameters.decorationTable.DecorationTable;
 import model.parameters.decorationTable.Guard;
 import model.parameters.decorationTable.InstructionTable;
+import model.parameters.decorationTable.Update;
 import model.parameters.seedTemplate.SeedTemplate;
 
 public class GeneratorTimeSerieCounters {
@@ -22,6 +23,11 @@ public class GeneratorTimeSerieCounters {
 			generateCodeBuffer.append(this.indentation+"if(this.timeSerieLetters[currentSignIndex].equals( \""+instruction.getStep()+"\")){ \n");
 			for(Guard guard : instruction.getGuards()){
 				generateCodeBuffer.append(this.indentation+"this.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex,"+guard.getValue()+"); \n");
+			}
+			if(instruction.getUpdates() != null){
+				for(Update update : instruction.getUpdates()){
+					generateCodeBuffer.append(this.indentation+"this.timeSerieCounters.get(\""+update.getVar()+"\").set(this.currentValueIndex,"+update.getValue()+"); \n");
+				}
 			}
 			generateCodeBuffer.append(this.indentation+"} \n");
 		}
