@@ -1,6 +1,5 @@
 package model.generator;
 
-import model.parameters.seedTemplate.Arc;
 import model.parameters.seedTemplate.SeedTemplate;
 
 public class GeneratorTimeSerieSigns {
@@ -23,10 +22,7 @@ public class GeneratorTimeSerieSigns {
 		generateCodeBuffer.append(this.indentation+"\t} else {\n");
 		generateCodeBuffer.append(this.indentation+"\t\ttimeSerieSigns[i] = \">\";\n");
 		generateCodeBuffer.append(this.indentation+"\t}\n");
-		generateCodeBuffer.append(this.indentation+"}\n");
-
-		
-		
+		generateCodeBuffer.append(this.indentation+"}\n");	
 	}
 
 	public void setIndentation(String string) {

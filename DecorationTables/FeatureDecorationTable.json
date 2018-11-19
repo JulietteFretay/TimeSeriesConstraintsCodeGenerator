@@ -71,7 +71,7 @@
 			]
 		},
 		{
-			"step":"foundE",
+			"step":"found_end",
 			"after":0,
 			"guards":[
 				{

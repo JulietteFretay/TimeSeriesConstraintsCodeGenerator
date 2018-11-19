@@ -1,13 +1,13 @@
 {
 	"name" : "peak",
-	"startingState" : "d",
-	"states" : ["d","r","t"],
+	"startingState" : "s",
+	"states" : ["s","r","t"],
 	"links" : [
-		{"from" :"d",
+		{"from" :"s",
 		"sig" :"geq",
-		"to" :"d",
+		"to" :"s",
 		"letter" :"out"},
-		{"from" :"d",
+		{"from" :"s",
 		"sig" :"lt",
 		"to" :"r",
 		"letter" :"out"},

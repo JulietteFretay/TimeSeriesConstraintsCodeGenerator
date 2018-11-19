@@ -34,7 +34,7 @@
 		{"from" :"t",
 		"sig" :"gt",
 		"to" :"s",
-		"letter" :"outR"},
+		"letter" :"outR"}
 	],
 	"nodeDistance" : 32
 }

@@ -1,17 +1,14 @@
 package model.generator;
 
-import calculator.SignsCalculator;
 import model.parameters.decorationTable.DecorationTable;
 import model.parameters.decorationTable.InstructionFinal;
 import model.parameters.decorationTable.InstructionInit;
-import model.parameters.seedTemplate.Arc;
 import model.parameters.seedTemplate.SeedTemplate;
 
 public class Generator {
 	private StringBuffer generateCodeBuffer;
 	private GeneratorTimeSerieSigns generatorTimeSerieSigns;
-	private GeneratorTimeSerieStates generatorTimeSerieStates;
-	private GeneratorTimeSerieLetters generatorTimeSerieLetters;
+	private GeneratorTimeSerieStatesAndLetters generatorTimeSerieStates;
 	private GeneratorTimeSerieCounters generatorTimeSerieCounters;
 	private GeneratorTimeSerieResults generatorTimeSerieResults;
 
@@ -19,15 +16,14 @@ public class Generator {
 		generateCodeBuffer = new StringBuffer();
 		
 		generatorTimeSerieSigns = new GeneratorTimeSerieSigns(seedTemplate);
-		generatorTimeSerieStates = new GeneratorTimeSerieStates(seedTemplate);
-		generatorTimeSerieLetters = new GeneratorTimeSerieLetters(seedTemplate);
+		generatorTimeSerieStates = new GeneratorTimeSerieStatesAndLetters(seedTemplate);
 		generatorTimeSerieCounters = new GeneratorTimeSerieCounters(seedTemplate,decorationTable);
 		generatorTimeSerieResults = new GeneratorTimeSerieResults(seedTemplate,decorationTable);
 		//Class
 		generateCodeBuffer.append("import java.util.ArrayList; \n");
 		generateCodeBuffer.append("import java.util.HashMap; \n");
 		
-		generateCodeBuffer.append("public class GenerateCode { \n");
+		generateCodeBuffer.append("public class GeneratedCode { \n");
 		
 		//Variables
 		generateCodeBuffer.append("\tprivate int[] timeSerie; \n");
@@ -64,7 +60,7 @@ public class Generator {
 		}
 		for(InstructionInit instruction : decorationTable.getInstructionsInit()){
 			generateCodeBuffer.append("\t\tArrayList<Integer> counterList = new ArrayList<Integer>();\n");
-			generateCodeBuffer.append("\t\t\tcounterList.add(new Integer("+instruction.getInit()+"));\n");
+			generateCodeBuffer.append("\t\tcounterList.add(new Integer("+instruction.getInit()+"));\n");
 			generateCodeBuffer.append("\t\tfor(int i = 0; i < timeSerie.length-2; i++) {\n");
 			generateCodeBuffer.append("\t\t\tcounterList.add(new Integer(0));\n");
 			generateCodeBuffer.append("\t\t}\n");
@@ -89,9 +85,6 @@ public class Generator {
 		generateCodeBuffer.append("\t\tthis.currentSignIndex = 0;\n");
 		generateCodeBuffer.append("\t\tthis.currentState =\"" + seedTemplate.getStartingState() + "\";\n");
 		generateCodeBuffer.append("\t\tSystem.out.println(\"TimeSerie States : \"+this.listToString(timeSerieStates));\n");	
-
-		generatorTimeSerieLetters.setIndentation("\t\t");
-		generatorTimeSerieLetters.append(generateCodeBuffer);
 		generateCodeBuffer.append("\t\tSystem.out.println(\"TimeSerie Letters : \"+this.listToString(timeSerieLetters));\n");	
 
 		generatorTimeSerieCounters.setIndentation("\t\t");
