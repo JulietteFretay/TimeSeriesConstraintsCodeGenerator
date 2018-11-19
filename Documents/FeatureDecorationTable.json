@@ -1,59 +1,60 @@
 {
 	"name":"feature",
 	"instructionsInit":[
-		{"var":"c",
+		{"var":"C",
+		"function":"true",
 		"init":"default"},
-		{"var":"d",
+		{"var":"D",
+		"function":"true",
 		"init":"neutral"},
-		{"var":"r",
+		{"var":"R",
+		"function":"true",
 		"init":"default"}
 	],
 	"instructionsFinal":[
-		{"var":"F",
-		"index":"n",
-		"value":"0"
+		{"aggreg":"true",
+		"agVar":["R","C"]
 		}
 	],
 	"instructionsTable":[
 		{
-			"step":"out",
-			"after":0,
-			"guards":[
-				{
-					"var":"F",
-					"index":"i",
-					"value":"0"
-				}
-			]
+			"step":"out"
 		},
 		{
 			"step":"outR",
-			"after":0,
-			"guards":[
+			"updates":[
 				{
-					"var":"F",
-					"index":"i",
-					"value":"0"
+					"var":"D",
+					"function":"true",
+					"value":"neutral"
 				}
 			]
 		},
 		{
 			"step":"outA",
-			"after":0,
-			"guards":[
+			"updates":[
 				{
-					"var":"F",
-					"index":"i",
-					"value":"0"
+					"var":"C",
+					"function":"true",
+					"value":"default"
+				},
+				{
+					"var":"D",
+					"function":"true",
+					"value":"neutral"
+				},
+				{
+					"var":"R",
+					"aggreg":"true",
+					"agVar":["R","C"]
 				}
 			]
 		},
 		{
 			"step":"maybeB",
-			"after":0,
-			"guards":[
+			"updates":[
 				{
-					"var":"F",
+					"var":"D",
 					"index":"i",
 					"value":"+1"
 				}
@@ -61,42 +62,16 @@
 		},
 		{
 			"step":"maybeA",
-			"after":0,
-			"guards":[
-				{
-					"var":"F",
-					"index":"i",
-					"value":"+1"
-				}
-			]
+			"after":0
 		},
 		{
-			"step":"foundE",
-			"after":0,
-			"guards":[
-				{
-					"var":"F",
-					"index":"i",
-					"value":"C+1"
-				}
-			],
-			"updates":[
-				{
-					"var":"C",
-					"value":"C+1"
-				}
-			]
+			"step":"maybeA",
+			"after":1
 		},
+
 		{
 			"step":"found",
 			"after":0,
-			"guards":[
-				{
-					"var":"F",
-					"index":"i",
-					"value":"C+1"
-				}
-			],
 			"updates":[
 				{
 					"var":"C",
@@ -107,11 +82,30 @@
 		{
 			"step":"in",
 			"after":0,
-			"guards":[
+		},
+		{
+			"step":"foundE",
+			"after":0,
+			"updates":[
 				{
-					"var":"F",
-					"index":"i",
-					"value":"C"
+					"var":"D",
+					"function":"true",
+					"value":"neutral"
+				},
+				{
+					"var":"R",
+					"aggreg":"true",
+					"agVar":["R"]
+				}
+			]
+		},
+		{
+			"step":"foundE",
+			"after":1,
+			"updates":[
+				{
+					"var":"C",
+					"value":"C+1"
 				}
 			]
 		}
