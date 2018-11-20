@@ -3,6 +3,7 @@ package model.parameters.decorationTable;
 public class InstructionInit {
 	private String var;
 	private String init;
+	private Boolean function;
 	
 	public String getVar() {
 		return var;
@@ -19,6 +20,12 @@ public class InstructionInit {
 	@Override
 	public String toString() {
 		return "(var=" + var + ", init=" + init + ")";
+	}
+	public Boolean getFunction() {
+		return function;
+	}
+	public void setFunction(Boolean function) {
+		this.function = function;
 	}
 	
 	

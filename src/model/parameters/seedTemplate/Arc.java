@@ -29,6 +29,8 @@ public class Arc {
 			res = "<";			
 		}else if(this.sig.equals("geq")){
 			res = ">=";			
+		}else if(this.sig.equals("neq")){
+			res = "<>";			
 		}
 		return res;
 	}

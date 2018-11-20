@@ -1,9 +1,13 @@
 package model.parameters.decorationTable;
 
+import java.util.ArrayList;
+
 public class InstructionFinal {
 	private String var;
 	private String index;
 	private String value;
+	private Boolean aggreg;
+	private ArrayList<String> agVar;
 	public String getVar() {
 		return var;
 	}
@@ -25,6 +29,18 @@ public class InstructionFinal {
 	@Override
 	public String toString() {
 		return "(var=" + var + ", index=" + index + ", value=" + value + ")";
+	}
+	public Boolean getAggreg() {
+		return aggreg;
+	}
+	public void setAggreg(Boolean aggreg) {
+		this.aggreg = aggreg;
+	}
+	public ArrayList<String> getAgVar() {
+		return agVar;
+	}
+	public void setAgVar(ArrayList<String> agVar) {
+		this.agVar = agVar;
 	}
 	
 	
