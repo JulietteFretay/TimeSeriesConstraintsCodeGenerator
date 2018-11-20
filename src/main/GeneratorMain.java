@@ -15,7 +15,7 @@ public class GeneratorMain {
 		System.out.println("Generateur de code Java pour des series temporelles");
 		//System.out.println("Veuillez entrer le chemin du fichier json de la table de decoration");
 		//String fileDecorationTable = br.readLine();
-		String fileDecorationTable = "DecorationTables/FootprintDecorationTable.json";
+		String fileDecorationTable = "DecorationTables/FeatureDecorationTable.json";
 		//System.out.println("Veuillez entrer le chemin du fichier json du seed transducer");
 		//String fileSeedTemplate = br.readLine();
 		String fileSeedTemplate = "SeedTemplates/PeakSeedTemplate.json";
