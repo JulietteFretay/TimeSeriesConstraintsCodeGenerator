@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class InstructionTable {
 	private String step;
-	private int after;
+	private String after;
 	private ArrayList<Guard> guards;
 	private ArrayList<Update> updates;
 	public String getStep() {
@@ -13,10 +13,10 @@ public class InstructionTable {
 	public void setStep(String step) {
 		this.step = step;
 	}
-	public int getAfter() {
+	public String getAfter() {
 		return after;
 	}
-	public void setAfter(int after) {
+	public void setAfter(String after) {
 		this.after = after;
 	}
 	public ArrayList<Guard> getGuards() {

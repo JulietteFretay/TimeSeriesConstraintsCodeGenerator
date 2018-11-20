@@ -6,8 +6,9 @@ public class InstructionFinal {
 	private String var;
 	private String index;
 	private String value;
-	private Boolean aggreg;
-	private ArrayList<String> agVar;
+	private Boolean function;
+	private Boolean useOther;
+	private int indexOther;
 	public String getVar() {
 		return var;
 	}
@@ -30,17 +31,23 @@ public class InstructionFinal {
 	public String toString() {
 		return "(var=" + var + ", index=" + index + ", value=" + value + ")";
 	}
-	public Boolean getAggreg() {
-		return aggreg;
+	public Boolean getFunction() {
+		return function;
 	}
-	public void setAggreg(Boolean aggreg) {
-		this.aggreg = aggreg;
+	public void setFunction(Boolean function) {
+		this.function = function;
 	}
-	public ArrayList<String> getAgVar() {
-		return agVar;
+	public Boolean getUseOther() {
+		return useOther;
 	}
-	public void setAgVar(ArrayList<String> agVar) {
-		this.agVar = agVar;
+	public void setUseOther(Boolean useOther) {
+		this.useOther = useOther;
+	}
+	public int getIndexOther() {
+		return indexOther;
+	}
+	public void setIndexOther(int indexOther) {
+		this.indexOther = indexOther;
 	}
 	
 	

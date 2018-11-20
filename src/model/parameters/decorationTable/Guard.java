@@ -1,5 +1,7 @@
 package model.parameters.decorationTable;
 
+import java.util.ArrayList;
+
 public class Guard {
 	private String var;
 	private String index;
@@ -7,6 +9,8 @@ public class Guard {
 	private Boolean useOther;
 	private String indexOther;
 	private String addValue;
+	private Boolean function;
+	private ArrayList<?> funparam;
 	public String getVar() {
 		return var;
 	}
@@ -46,6 +50,18 @@ public class Guard {
 	}
 	public void setAddValue(String addValue) {
 		this.addValue = addValue;
+	}
+	public Boolean getFunction() {
+		return function;
+	}
+	public void setFunction(Boolean function) {
+		this.function = function;
+	}
+	public ArrayList<?> getFunparam() {
+		return funparam;
+	}
+	public void setFunparam(ArrayList<?> funparam) {
+		this.funparam = funparam;
 	}
 	
 	

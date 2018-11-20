@@ -4,34 +4,64 @@
 		{
 			"var": "C",
 			"function": "true",
-			"init": "default"
+			"init": "neutral"
 		},
 		{
 			"var": "D",
 			"function": "true",
 			"init": "neutral"
-		},
-		{
-			"var": "R",
-			"function": "true",
-			"init": "default"
 		}
 	],
 	"instructionsFinal": [
 		{
-			"aggreg": "true",
-			"agVar": [
-				"R",
-				"C"
-			]
+			"var": "f",
+			"index": "n",
+			"function": "true",
+			"value": "defaultF"
+		},
+		{
+			"var": "e",
+			"index": "n",
+			"useOther": "true",
+			"value": "C",
+			"indexOther":"+0"
 		}
 	],
 	"instructionsTable": [
 		{
-			"step": "out"
+			"step": "out",
+			"after": 0,
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				}
+			]
 		},
 		{
 			"step": "outR",
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				}
+			],
 			"updates": [
 				{
 					"var": "D",
@@ -42,42 +72,63 @@
 		},
 		{
 			"step": "outA",
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"useOther":"true",
+					"value":"C",
+					"indexOther":"+0"
+				}
+			],
 			"updates": [
 				{
 					"var": "C",
 					"function": "true",
-					"value": "default"
+					"value": "defaultF"
 				},
 				{
 					"var": "D",
 					"function": "true",
 					"value": "neutral"
-				},
-				{
-					"var": "R",
-					"aggreg": "true",
-					"agVar": [
-						"R",
-						"C"
-					]
 				}
 			]
 		},
 		{
 			"step": "maybeB",
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"useOther":"true",
+					"value":"e",
+					"indexOther":"+1"
+				}
+			],
 			"updates": [
 				{
 					"var": "D",
 					"function": "true",
 					"value": "phi",
 					"funparam": [
-						"D",
+						{
+							"value":"D"
+						},
 						{
 							"function": "true",
-							"value": "delta",
-							"funparam": [
-								"i"
-							]
+							"value": "delta"
 						}
 					]
 				}
@@ -86,20 +137,33 @@
 		{
 			"step": "maybeA",
 			"after": 0,
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"useOther":"true",
+					"value":"e",
+					"indexOther":"+1"
+				}
+			],
 			"updates": [
 				{
 					"var": "D",
 					"function": "true",
 					"value": "phi",
 					"funparam": [
-						"D",
+						{
+							"value":"D"
+						},
 						{
 							"function": "true",
-							"value": "delta",
-							"prime": "true",
-							"funparam": [
-								"i"
-							]
+							"value": "deltaPrime"
 						}
 					]
 				}
@@ -108,19 +172,33 @@
 		{
 			"step": "maybeA",
 			"after": 1,
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"useOther":"true",
+					"value":"e",
+					"indexOther":"+1"
+				}
+			],
 			"updates": [
 				{
 					"var": "D",
 					"function": "true",
 					"value": "phi",
 					"funparam": [
-						"D",
+						{
+							"value":"D"
+						},
 						{
 							"function": "true",
-							"value": "delta",
-							"funparam": [
-								"i"
-							]
+							"value": "delta"
 						}
 					]
 				}
@@ -129,6 +207,22 @@
 		{
 			"step": "found",
 			"after": 0,
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"useOther":"true",
+					"value":"e",
+					"indexOther":"+0"
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"useOther":"true",
+					"value":"e",
+					"indexOther":"+1"
+				}
+			],
 			"updates": [
 				{
 					"var": "C",
@@ -139,23 +233,18 @@
 							"function": "true",
 							"value": "phi",
 							"funparam": [
-								"D",
+								{
+							"value":"D"
+						},
 								{
 									"function": "true",
-									"value": "delta",
-									"funparam": [
-										"i"
-									]
+									"value": "delta"
 								}
 							]
 						},
 						{
 							"function": "true",
-							"value": "delta",
-							"prime": "true",
-							"funparam": [
-								"i"
-							]
+							"value": "deltaPrime"
 						}
 					]
 				},
@@ -169,20 +258,34 @@
 		{
 			"step": "found",
 			"after": 1,
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"useOther":"true",
+					"value":"e",
+					"indexOther":"+0"
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"useOther":"true",
+					"value":"e",
+					"indexOther":"+1"
+				}
+			],
 			"updates": [
 				{
 					"var": "C",
 					"function": "true",
 					"value": "phi",
 					"funparam": [
-						"D",
+						{
+							"value":"D"
+						},
 						{
 							"function": "true",
-							"value": "delta",
-							"prime": "true",
-							"funparam": [
-								"i"
-							]
+							"value": "deltaPrime"
 						}
 					]
 				},
@@ -196,25 +299,40 @@
 		{
 			"step": "in",
 			"after": 0,
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"useOther":"true",
+					"value":"e",
+					"indexOther":"+1"
+				}
+			],
 			"updates": [
 				{
 					"var": "C",
 					"function": "true",
 					"value": "phi",
 					"funparam": [
-						"C",
+						{
+							"value":"C"
+						},
 						{
 							"function": "true",
 							"value": "phi",
 							"funparam": [
-								"D",
+								{
+							"value":"D"
+						},
 								{
 									"function": "true",
-									"value": "delta",
-									"prime": "true",
-									"funparam": [
-										"i"
-									]
+									"value": "deltaPrime"
 								}
 							]
 						}
@@ -230,24 +348,40 @@
 		{
 			"step": "in",
 			"after": 1,
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"useOther":"true",
+					"value":"e",
+					"indexOther":"+1"
+				}
+			],
 			"updates": [
 				{
 					"var": "C",
 					"function": "true",
 					"value": "phi",
 					"funparam": [
-						"C",
+						{
+							"value":"C"
+						},
 						{
 							"function": "true",
 							"value": "phi",
 							"funparam": [
-								"D",
+								{
+							"value":"D"
+						},
 								{
 									"function": "true",
-									"value": "delta",
-									"funparam": [
-										"i"
-									]
+									"value": "delta"
 								}
 							]
 						}
@@ -263,307 +397,40 @@
 		{
 			"step": "found_end",
 			"after": 0,
-			"updates": [
+			"guards":[
 				{
-					"var": "D",
-					"function": "true",
-					"value": "neutral"
-				},
-				{
-					"var": "R",
-					"aggreg": "true",
-					"agVar": [
-						"R",
-						{
-							"function": "true",
-							"value": "phi",
-							"funparam": [
-								{
-									"function": "true",
-									"value": "phi",
-									"funparam": [
-										"D",
-										{
-											"function": "true",
-											"value": "delta",
-											"funparam": [
-												"i"
-											]
-										}
-									]
-								},
-								{
-									"function": "true",
-									"value": "delta",
-									"prime": "true",
-									"funparam": [
-										"i"
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"step": "found_end",
-			"after": 1,
-			"updates": [
-				{
-					"var": "D",
-					"function": "true",
-					"value": "neutral"
-				},
-				{
-					"var": "R",
-					"aggreg": "true",
-					"agVar": [
-						"R",
-						{
-							"function": "true",
-							"value": "phi",
-							"funparam": [
-								"D",
-								{
-									"function": "true",
-									"value": "delta",
-									"funparam": [
-										"i"
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"step": "out"
-		},
-		{
-			"step": "outR",
-			"updates": [
-				{
-					"var": "D",
-					"function": "true",
-					"value": "neutral"
-				}
-			]
-		},
-		{
-			"step": "outA",
-			"updates": [
-				{
-					"var": "C",
-					"function": "true",
-					"value": "default"
-				},
-				{
-					"var": "D",
-					"function": "true",
-					"value": "neutral"
-				},
-				{
-					"var": "R",
-					"aggreg": "true",
-					"agVar": [
-						"R",
-						"C"
-					]
-				}
-			]
-		},
-		{
-			"step": "maybeB",
-			"updates": [
-				{
-					"var": "D",
-					"function": "true",
-					"value": "phi",
-					"funparam": [
-						"D",
-						{
-							"function": "true",
-							"value": "delta",
-							"funparam": [
-								"i"
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"step": "maybeA",
-			"after": 0,
-			"updates": [
-				{
-					"var": "D",
-					"function": "true",
-					"value": "phi",
-					"funparam": [
-						"D",
-						{
-							"function": "true",
-							"value": "delta",
-							"prime": "true",
-							"funparam": [
-								"i"
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"step": "maybeA",
-			"after": 1,
-			"updates": [
-				{
-					"var": "D",
-					"function": "true",
-					"value": "phi",
-					"funparam": [
-						"D",
-						{
-							"function": "true",
-							"value": "delta",
-							"funparam": [
-								"i"
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"step": "found",
-			"after": 0,
-			"updates": [
-				{
-					"var": "C",
-					"function": "true",
+					"var":"f",
+					"index":"+0",
+					"function":"true",
 					"value": "phi",
 					"funparam": [
 						{
 							"function": "true",
 							"value": "phi",
 							"funparam": [
-								"D",
+								{
+							"value":"D"
+						},
 								{
 									"function": "true",
-									"value": "delta",
-									"funparam": [
-										"i"
-									]
+									"value": "delta"
 								}
 							]
 						},
 						{
 							"function": "true",
-							"value": "delta",
-							"prime": "true",
-							"funparam": [
-								"i"
-							]
+							"value": "deltaPrime"
 						}
 					]
 				},
 				{
-					"var": "D",
-					"function": "true",
-					"value": "neutral"
+					"var":"e",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
 				}
-			]
-		},
-		{
-			"step": "found",
-			"after": 1,
+			],
 			"updates": [
-				{
-					"var": "C",
-					"function": "true",
-					"value": "phi",
-					"funparam": [
-						"D",
-						{
-							"function": "true",
-							"value": "delta",
-							"prime": "true",
-							"funparam": [
-								"i"
-							]
-						}
-					]
-				},
-				{
-					"var": "D",
-					"function": "true",
-					"value": "neutral"
-				}
-			]
-		},
-		{
-			"step": "in",
-			"after": 0,
-			"updates": [
-				{
-					"var": "C",
-					"function": "true",
-					"value": "phi",
-					"funparam": [
-						"C",
-						{
-							"function": "true",
-							"value": "phi",
-							"funparam": [
-								"D",
-								{
-									"function": "true",
-									"value": "delta",
-									"prime": "true",
-									"funparam": [
-										"i"
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					"var": "D",
-					"function": "true",
-					"value": "neutral"
-				}
-			]
-		},
-		{
-			"step": "in",
-			"after": 1,
-			"updates": [
-				{
-					"var": "C",
-					"function": "true",
-					"value": "phi",
-					"funparam": [
-						"C",
-						{
-							"function": "true",
-							"value": "phi",
-							"funparam": [
-								"D",
-								{
-									"function": "true",
-									"value": "delta",
-									"funparam": [
-										"i"
-									]
-								}
-							]
-						}
-					]
-				},
 				{
 					"var": "D",
 					"function": "true",
@@ -573,79 +440,35 @@
 		},
 		{
 			"step": "found_end",
-			"after": 0,
-			"updates": [
-				{
-					"var": "D",
-					"function": "true",
-					"value": "neutral"
-				},
-				{
-					"var": "R",
-					"aggreg": "true",
-					"agVar": [
-						"R",
-						{
-							"function": "true",
-							"value": "phi",
-							"funparam": [
-								{
-									"function": "true",
-									"value": "phi",
-									"funparam": [
-										"D",
-										{
-											"function": "true",
-											"value": "delta",
-											"funparam": [
-												"i"
-											]
-										}
-									]
-								},
-								{
-									"function": "true",
-									"value": "delta",
-									"prime": "true",
-									"funparam": [
-										"i"
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"step": "found_end",
 			"after": 1,
+			"guards":[
+				{
+					"var":"f",
+					"index":"+0",
+					"function":"true",
+					"value":"phi",
+					"funparam":[
+						{
+							"value":"D"
+						},
+						{
+							"function":"true",
+							"value":"delta"
+						}
+					]
+				},
+				{
+					"var":"e",
+					"index":"+0",
+					"function":"true",
+					"value":"defaultF"
+				}
+			],
 			"updates": [
 				{
 					"var": "D",
 					"function": "true",
 					"value": "neutral"
-				},
-				{
-					"var": "R",
-					"aggreg": "true",
-					"agVar": [
-						"R",
-						{
-							"function": "true",
-							"value": "phi",
-							"funparam": [
-								"D",
-								{
-									"function": "true",
-									"value": "delta",
-									"funparam": [
-										"i"
-									]
-								}
-							]
-						}
-					]
 				}
 			]
 		}

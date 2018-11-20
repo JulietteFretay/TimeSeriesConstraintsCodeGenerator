@@ -41,14 +41,25 @@ public class Generator {
 		generateCodeBuffer.append("\tprivate String[] timeSerieSigns; \n");
 		generateCodeBuffer.append("\tprivate String[] timeSerieStates; \n");
 		generateCodeBuffer.append("\tprivate String[] timeSerieLetters; \n");
+		generateCodeBuffer.append("\tprivate int defaultVal; \n");
+		generateCodeBuffer.append("\tprivate int after; \n");
 		generateCodeBuffer.append("\tprivate HashMap<String, ArrayList<Integer>> timeSerieCounters; \n");
 		generateCodeBuffer.append("\tprivate HashMap<String, Integer> currentCounters; \n");
+		
+		generateCodeBuffer.append("\tpublic static final String FEATURE_ONE = \"FEATURE_ONE\";\n");
+		generateCodeBuffer.append("\tpublic static final String FEATURE_WIDTH = \"FEATURE_WIDTH\";\n");
+		generateCodeBuffer.append("\tpublic static final String FEATURE_SURFACE = \"FEATURE_SURFACE\";\n");
+		generateCodeBuffer.append("\tpublic static final String FEATURE_MAX = \"FEATURE_MAX\";\n");
+		generateCodeBuffer.append("\tpublic static final String FEATURE_MIN = \"FEATURE_MIN\";\n");
+		generateCodeBuffer.append("\tpublic static final String FEATURE_RANGE = \"FEATURE_RANGE\";\n");
 
 		//Get Result 
-		generateCodeBuffer.append("\tpublic void getResultForATimeSerie(int[] timeSerie, String feature, int defaultVal) {\n");		
+		generateCodeBuffer.append("\tpublic void getResultForATimeSerie(int[] timeSerie, String feature, int defaultVal,int after) {\n");		
 
 		generateCodeBuffer.append("\t\tthis.timeSerieResults = new HashMap<String, ArrayList<Integer>>();\n");	
 		generateCodeBuffer.append("\t\tthis.timeSerie = timeSerie;\n");	
+		generateCodeBuffer.append("\t\tthis.defaultVal = defaultVal;\n");	
+		generateCodeBuffer.append("\t\tthis.after = after;\n");
 		generateCodeBuffer.append("\t\tSystem.out.println(\"TimeSerie Values : \"+this.listToString(timeSerie));\n");	
 		generateCodeBuffer.append("\t\tthis.currentState = \"" + seedTemplate.getStartingState() + "\";\n");
 		generateCodeBuffer.append("\t\tint nbElements = timeSerie.length;\n");
@@ -59,19 +70,25 @@ public class Generator {
 		generateCodeBuffer.append("\t\tthis.timeSerieCounters = new HashMap<String, ArrayList<Integer>>();\n");		
 		generateCodeBuffer.append("\t\tthis.currentCounters = new HashMap<String, Integer>() ;\n");	
 		for(InstructionFinal instruction : decorationTable.getInstructionsFinal()){
-			generateCodeBuffer.append("\t\tArrayList<Integer> resultList = new ArrayList<Integer>();\n");
+			generateCodeBuffer.append("\t\tArrayList<Integer> resultList"+instruction.getVar()+" = new ArrayList<Integer>();\n");
 			generateCodeBuffer.append("\t\tfor(int i = 0; i < timeSerie.length-1; i++) {\n");
-			generateCodeBuffer.append("\t\t\tresultList.add(new Integer(0));\n");
+			generateCodeBuffer.append("\t\t\tresultList"+instruction.getVar()+".add(new Integer(0));\n");
 			generateCodeBuffer.append("\t\t}\n");
-			generateCodeBuffer.append("\t\tthis.timeSerieResults.put(\""+instruction.getVar()+"\",resultList);\n");	
+			generateCodeBuffer.append("\t\t\tresultList"+instruction.getVar()+".add(new Integer(0));\n");
+			generateCodeBuffer.append("\t\tthis.timeSerieResults.put(\""+instruction.getVar()+"\",resultList"+instruction.getVar()+");\n");	
 		}
 		for(InstructionInit instruction : decorationTable.getInstructionsInit()){
-			generateCodeBuffer.append("\t\tArrayList<Integer> counterList = new ArrayList<Integer>();\n");
-			generateCodeBuffer.append("\t\tcounterList.add(new Integer("+instruction.getInit()+"));\n");
+			generateCodeBuffer.append("\t\tArrayList<Integer> counterList"+instruction.getVar()+" = new ArrayList<Integer>();\n");
+			if(instruction.getFunction()){
+				generateCodeBuffer.append("\t\tcounterList"+instruction.getVar()+".add(new Integer("+instruction.getInit()+"(feature)));\n");
+			}else{
+				generateCodeBuffer.append("\t\tcounterList"+instruction.getVar()+".add(new Integer("+instruction.getInit()+"));\n");
+			}
+			
 			generateCodeBuffer.append("\t\tfor(int i = 0; i < timeSerie.length-2; i++) {\n");
-			generateCodeBuffer.append("\t\t\tcounterList.add(new Integer(0));\n");
+			generateCodeBuffer.append("\t\t\tcounterList"+instruction.getVar()+".add(new Integer(0));\n");
 			generateCodeBuffer.append("\t\t}\n");
-			generateCodeBuffer.append("\t\tthis.timeSerieCounters.put(\""+instruction.getVar()+"\",counterList);\n");	
+			generateCodeBuffer.append("\t\tthis.timeSerieCounters.put(\""+instruction.getVar()+"\",counterList"+instruction.getVar()+");\n");	
 			generateCodeBuffer.append("\t\tthis.currentCounters.put(\""+instruction.getVar()+"\",0);\n");	
 		}
 
@@ -116,6 +133,7 @@ public class Generator {
 
 		generateCodeBuffer.append("\t}\n");		
 		GeneratorListToString.append(generateCodeBuffer);
+		GeneratorFeatureFunctions.append(generateCodeBuffer);
 		generateCodeBuffer.append("}");
 
 	}

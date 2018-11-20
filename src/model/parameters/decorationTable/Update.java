@@ -10,8 +10,7 @@ public class Update {
 	private String indexOther;
 	private String addValue;
 	private Boolean function;
-	private Boolean aggreg;
-	private ArrayList<String> agVar;
+	private ArrayList<?> funparam;
 	
 	public String getVar() {
 		return var;
@@ -59,17 +58,11 @@ public class Update {
 	public void setFunction(Boolean function) {
 		this.function = function;
 	}
-	public Boolean getAggreg() {
-		return aggreg;
+	public ArrayList<?> getFunparam() {
+		return funparam;
 	}
-	public void setAggreg(Boolean aggreg) {
-		this.aggreg = aggreg;
-	}
-	public ArrayList<String> getAgVar() {
-		return agVar;
-	}
-	public void setAgVar(ArrayList<String> agVar) {
-		this.agVar = agVar;
+	public void setFunparam(ArrayList<?> funparam) {
+		this.funparam = funparam;
 	}
 	
 	
