@@ -11,15 +11,18 @@ import parser.SeedTemplateParser;
 public class GeneratorMain {
 
 	public static void main(String[] args) throws IOException {
+		
 		System.out.println("Generateur de code Java pour des series temporelles");
 		//System.out.println("Veuillez entrer le chemin du fichier json de la table de decoration");
 		//String fileDecorationTable = br.readLine();
-		String fileDecorationTable = "DecorationTables/FeatureDecorationTable.json";
+		String fileDecorationTable = "DecorationTables/FootprintDecorationTable.json";
 		//System.out.println("Veuillez entrer le chemin du fichier json du seed transducer");
 		//String fileSeedTemplate = br.readLine();
-		String fileSeedTemplate = "SeedTemplates/DecreasingSeedTemplate.json";
+		String fileSeedTemplate = "SeedTemplates/PeakSeedTemplate.json";
+		
 		DecorationTable table = DecorationTableParser.parseDecorationTable(fileDecorationTable);
 		SeedTemplate seed = SeedTemplateParser.parseSeedTemplate(fileSeedTemplate);
+		
 		System.out.println("Lancement de la generation de code");
 		Generator generator = new Generator(table,seed);
 		generator.seeCodeInConsole();

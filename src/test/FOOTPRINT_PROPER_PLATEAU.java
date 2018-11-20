@@ -1,7 +1,7 @@
 package test; 
 import java.util.ArrayList; 
 import java.util.HashMap; 
-public class FOOTPRINT_INCREASING { 
+public class FOOTPRINT_PROPER_PLATEAU { 
 	private int[] timeSerie; 
 	private HashMap<String, ArrayList<Integer>> timeSerieResults; 
 	private String  currentState; 
@@ -57,6 +57,36 @@ public class FOOTPRINT_INCREASING {
 				this.currentState = this.timeSerieStates[currentValueIndex] ;
 			}
 			else if (this.currentState.equals("s") && "<".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "r";
+				this.timeSerieLetters[currentSignIndex] = "out";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("r") && "<".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "r";
+				this.timeSerieLetters[currentSignIndex] = "out";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("r") && "=".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "t";
+				this.timeSerieLetters[currentSignIndex] = "maybeB";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("r") && ">".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "s";
+				this.timeSerieLetters[currentSignIndex] = "out";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("t") && "=".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "t";
+				this.timeSerieLetters[currentSignIndex] = "maybeB";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("t") && "<".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "r";
+				this.timeSerieLetters[currentSignIndex] = "outR";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("t") && ">".contains(this.timeSerieSigns[currentSignIndex])){
 				this.timeSerieStates[currentValueIndex] = "s";
 				this.timeSerieLetters[currentSignIndex] = "foundE";
 				this.currentState = this.timeSerieStates[currentValueIndex] ;

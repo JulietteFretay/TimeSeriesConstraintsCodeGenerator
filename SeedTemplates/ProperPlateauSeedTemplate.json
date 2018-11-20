@@ -34,7 +34,7 @@
 		{"from" :"t",
 		"sig" :"gt",
 		"to" :"s",
-		"letter" :"found_end"}
+		"letter" :"foundE"}
 	],
 	"nodeDistance" : 32
 }

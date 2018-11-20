@@ -30,7 +30,7 @@
 		{"from" :"t",
 		"sig" :"gt",
 		"to" :"r",
-		"letter" :"found_end"},
+		"letter" :"foundE"},
 		{"from" :"t",
 		"sig" :"lt",
 		"to" :"s",

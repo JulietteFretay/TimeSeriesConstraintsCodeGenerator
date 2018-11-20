@@ -6,7 +6,7 @@
 		{"from" :"s",
 		"sig" :"gt",
 		"to" :"s",
-		"letter" :"found_end"},
+		"letter" :"foundE"},
 		{"from" :"s",
 		"sig" :"leq",
 		"to" :"s",
