@@ -22,7 +22,7 @@
 		{"from" :"r",
 		"sig" :"lt",
 		"to" :"s",
-		"letter" :"found_end"},
+		"letter" :"foundE"},
 		{"from" :"t",
 		"sig" :"gt",
 		"to" :"r",
@@ -34,7 +34,7 @@
 		{"from" :"t",
 		"sig" :"lt",
 		"to" :"s",
-		"letter" :"found_end"}
+		"letter" :"foundE"}
 	],
 	"nodeDistance" : 32
 }

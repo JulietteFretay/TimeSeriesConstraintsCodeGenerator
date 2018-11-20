@@ -10,7 +10,7 @@
 		{"from" :"s",
 		"sig" :"eq",
 		"to" :"s",
-		"letter" :"found_end"}
+		"letter" :"foundE"}
 	],
 	"nodeDistance" : 30
 }

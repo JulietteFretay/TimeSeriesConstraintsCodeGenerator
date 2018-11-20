@@ -46,7 +46,7 @@
 		{"from" :"v",
 		"sig" :"gt",
 		"to" :"t",
-		"letter" :"found_end"}
+		"letter" :"foundE"}
 	],
 	"nodeDistance" : 48
 }

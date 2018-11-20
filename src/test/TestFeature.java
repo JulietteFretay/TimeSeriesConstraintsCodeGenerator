@@ -3,6 +3,7 @@ package test;
 public class TestFeature {
 
 	public static void main(String[] args) {
+		
 		int[] serie = new int[] {4,4,2,2,3,5,5,6,3,1,1,2,2,2,2,2,2,1};
 		
 		//Min_Decreasing
@@ -17,6 +18,6 @@ public class TestFeature {
 		System.out.println("Test Max Peak");
 		FEATURE_PEAK fp = new FEATURE_PEAK();
 		fp.getResultForATimeSerie(serie,"FEATURE_MAX",0,0);
-	}
 
+	}
 }

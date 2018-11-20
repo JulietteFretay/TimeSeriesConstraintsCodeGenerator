@@ -119,7 +119,7 @@ public class FOOTPRINT_PEAK {
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("p").get(this.currentSignIndex+1)); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "found_end")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentSignIndex+0)+1); 
 				}else{ 
@@ -172,7 +172,7 @@ public class FOOTPRINT_PEAK {
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "found_end")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)+1); 
 				} 
@@ -196,7 +196,11 @@ public class FOOTPRINT_PEAK {
 	public String listToString(int[] list){
 		String res="[";
 		for(int i=0;i<list.length;i++){
-			res+=list[i]+" ";
+			if (i < list.length-1) {
+				res+=list[i]+", ";
+			} else {
+				res+=list[i];
+			}
 		}
 		res+="]";
 		return res;
@@ -205,7 +209,11 @@ public class FOOTPRINT_PEAK {
 	public String listToString(String[] list){
 		String res="[";
 		for(int i=0;i<list.length;i++){
-			res+=list[i]+" ";
+			if (i < list.length-1) {
+				res+=list[i]+", ";
+			} else {
+				res+=list[i];
+			}
 		}
 		res+="]";
 		return res;
