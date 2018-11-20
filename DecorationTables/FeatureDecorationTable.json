@@ -234,8 +234,8 @@
 							"value": "phi",
 							"funparam": [
 								{
-							"value":"D"
-						},
+									"value":"D"
+								},
 								{
 									"function": "true",
 									"value": "delta"
@@ -328,8 +328,8 @@
 							"value": "phi",
 							"funparam": [
 								{
-							"value":"D"
-						},
+									"value":"D"
+								},
 								{
 									"function": "true",
 									"value": "deltaPrime"
@@ -377,8 +377,8 @@
 							"value": "phi",
 							"funparam": [
 								{
-							"value":"D"
-						},
+									"value":"D"
+								},
 								{
 									"function": "true",
 									"value": "delta"
@@ -409,8 +409,8 @@
 							"value": "phi",
 							"funparam": [
 								{
-							"value":"D"
-						},
+									"value":"D"
+								},
 								{
 									"function": "true",
 									"value": "delta"

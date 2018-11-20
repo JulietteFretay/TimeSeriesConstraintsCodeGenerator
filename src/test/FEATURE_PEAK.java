@@ -256,14 +256,14 @@ public class FEATURE_PEAK {
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "found_end")&& this.after ==0){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")&& this.after ==0){ 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
 				this.currentCounters.replace("D",this.currentCounters.get("D")); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "found_end")&& this.after ==1){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")&& this.after ==1){ 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
 				this.currentCounters.replace("D",this.currentCounters.get("D")); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
@@ -338,10 +338,10 @@ public class FEATURE_PEAK {
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "found_end")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "found_end")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
 			} 
 			this.currentValueIndex --;
@@ -353,7 +353,11 @@ public class FEATURE_PEAK {
 	public String listToString(int[] list){
 		String res="[";
 		for(int i=0;i<list.length;i++){
-			res+=list[i]+" ";
+			if (i < list.length-1) {
+				res+=list[i]+", ";
+			} else {
+				res+=list[i];
+			}
 		}
 		res+="]";
 		return res;
@@ -362,7 +366,11 @@ public class FEATURE_PEAK {
 	public String listToString(String[] list){
 		String res="[";
 		for(int i=0;i<list.length;i++){
-			res+=list[i]+" ";
+			if (i < list.length-1) {
+				res+=list[i]+", ";
+			} else {
+				res+=list[i];
+			}
 		}
 		res+="]";
 		return res;

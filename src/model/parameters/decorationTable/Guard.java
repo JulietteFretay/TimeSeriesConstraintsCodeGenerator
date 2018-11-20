@@ -10,7 +10,7 @@ public class Guard {
 	private String indexOther;
 	private String addValue;
 	private Boolean function;
-	private ArrayList<?> funparam;
+	private ArrayList<FunctionParam> funparam;
 	public String getVar() {
 		return var;
 	}
@@ -57,13 +57,11 @@ public class Guard {
 	public void setFunction(Boolean function) {
 		this.function = function;
 	}
-	public ArrayList<?> getFunparam() {
+	public ArrayList<FunctionParam> getFunparam() {
 		return funparam;
 	}
-	public void setFunparam(ArrayList<?> funparam) {
+	public void setFunparam(ArrayList<FunctionParam> funparam) {
 		this.funparam = funparam;
 	}
 	
-	
-
 }

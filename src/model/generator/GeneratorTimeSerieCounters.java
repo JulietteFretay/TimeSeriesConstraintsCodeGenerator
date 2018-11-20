@@ -1,6 +1,7 @@
 package model.generator;
 
 import model.parameters.decorationTable.DecorationTable;
+import model.parameters.decorationTable.FunctionParam;
 import model.parameters.decorationTable.Guard;
 import model.parameters.decorationTable.InstructionTable;
 import model.parameters.decorationTable.Update;
@@ -58,7 +59,8 @@ public class GeneratorTimeSerieCounters {
 
 					}else if(guard.getFunction() != null && guard.getFunction()){
 						if(guard.getValue().equals("phi")){
-							System.out.println(guard);
+							FunctionParam param1 = guard.getFunparam().get(0);
+							FunctionParam param2 = guard.getFunparam().get(1);
 						}else{
 							if(guard.getAddValue() != null){
 								generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature)"+guard.getAddValue()+"); \n");
