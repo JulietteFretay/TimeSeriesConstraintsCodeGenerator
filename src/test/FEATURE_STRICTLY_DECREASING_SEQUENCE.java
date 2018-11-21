@@ -268,33 +268,67 @@ public class FEATURE_STRICTLY_DECREASING_SEQUENCE {
 			if(this.timeSerieLetters[currentSignIndex].equals( "out")){ 
 				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
+				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "outR")){ 
 				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
+				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "outA")){ 
 				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)); 
 				} 
+				if(this.timeSerieResults.get("C") != null ){ 
+					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)); 
+				} 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeB")){ 
 				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 				if(this.timeSerieResults.get("e") != null ){ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
 				} 
+				if(this.timeSerieResults.get("e") != null ){ 
+					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
+				} 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")){ 
 				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 				if(this.timeSerieResults.get("e") != null ){ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
 				} 
+				if(this.timeSerieResults.get("e") != null ){ 
+					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
+				} 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")){ 
 				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 				if(this.timeSerieResults.get("e") != null ){ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
+				} 
+				if(this.timeSerieResults.get("e") != null ){ 
+					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
+				} 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
+			} 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "found")){ 
+				if(this.timeSerieResults.get("e") != null ){ 
+					this.timeSerieResults.get("f").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+0)); 
+				} 
+				if(this.timeSerieResults.get("e") != null ){ 
+					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
+				} 
+				if(this.timeSerieResults.get("e") != null ){ 
+					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
+				} 
+				if(this.timeSerieResults.get("e") != null ){ 
+					this.timeSerieResults.get("f").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+0)); 
 				} 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "found")){ 
@@ -304,32 +338,44 @@ public class FEATURE_STRICTLY_DECREASING_SEQUENCE {
 				if(this.timeSerieResults.get("e") != null ){ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
 				} 
-			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "found")){ 
+				if(this.timeSerieResults.get("e") != null ){ 
+					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
+				} 
 				if(this.timeSerieResults.get("e") != null ){ 
 					this.timeSerieResults.get("f").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+0)); 
 				} 
-				if(this.timeSerieResults.get("e") != null ){ 
-					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
-				} 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "in")){ 
 				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 				if(this.timeSerieResults.get("e") != null ){ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
 				} 
+				if(this.timeSerieResults.get("e") != null ){ 
+					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
+				} 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "in")){ 
 				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 				if(this.timeSerieResults.get("e") != null ){ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
 				} 
+				if(this.timeSerieResults.get("e") != null ){ 
+					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieResults.get("e").get(this.currentValueIndex+1)); 
+				} 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.currentCounters.get("D"),delta(feature)),deltaPrime(feature))); 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
+				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.currentCounters.get("D"),delta(feature)),deltaPrime(feature))); 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.currentCounters.get("D"),delta(feature))); 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
+				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.currentCounters.get("D"),delta(feature))); 
 			} 
 			this.currentValueIndex --;
 			this.currentSignIndex --;
@@ -406,7 +452,7 @@ public class FEATURE_STRICTLY_DECREASING_SEQUENCE {
 			case FEATURE_ONE:
 				return 1;
 			case FEATURE_WIDTH:
-				return this.currentSignIndex;
+				return this.timeSerie.length + 1;
 			case FEATURE_SURFACE:
 				return Integer.MAX_VALUE;
 			case FEATURE_MAX:
@@ -446,11 +492,11 @@ public class FEATURE_STRICTLY_DECREASING_SEQUENCE {
 			case FEATURE_WIDTH:
 				return 1;
 			case FEATURE_SURFACE:
-				return this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+1];
 			case FEATURE_MAX:
-				return this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+1];
 			case FEATURE_MIN:
-				return this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+1];
 			case FEATURE_RANGE:
 				return this.currentValueIndex;
 			default:
@@ -461,19 +507,19 @@ public class FEATURE_STRICTLY_DECREASING_SEQUENCE {
 	private int deltaPrime(String feature) {
 		switch(feature) {
 			case FEATURE_ONE:
-				return -1;
+				return 1;
 			case FEATURE_WIDTH:
-				return -1;
+				return 1;
 			case FEATURE_SURFACE:
-				return -this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+2];
 			case FEATURE_MAX:
-				return 0;
+				return this.timeSerie[this.currentValueIndex+2];
 			case FEATURE_MIN:
-				return 0;
+				return this.timeSerie[this.currentValueIndex+2];
 			case FEATURE_RANGE:
-				return 0;
+				return this.timeSerie[this.currentValueIndex+2];
 			default:
-				return 0;
+				return this.timeSerie[this.currentValueIndex+2];
 		}
 	}
 

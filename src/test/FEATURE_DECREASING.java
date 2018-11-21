@@ -497,19 +497,19 @@ public class FEATURE_DECREASING {
 	private int deltaPrime(String feature) {
 		switch(feature) {
 			case FEATURE_ONE:
-				return -1;
+				return 1;
 			case FEATURE_WIDTH:
-				return -1;
+				return 1;
 			case FEATURE_SURFACE:
-				return (-1) * this.timeSerie[this.currentValueIndex+1];
+				return this.timeSerie[this.currentValueIndex+2];
 			case FEATURE_MAX:
-				return Integer.MIN_VALUE;
+				return this.timeSerie[this.currentValueIndex+2];
 			case FEATURE_MIN:
-				return Integer.MAX_VALUE;
+				return this.timeSerie[this.currentValueIndex+2];
 			case FEATURE_RANGE:
-				return 0;
+				return this.timeSerie[this.currentValueIndex+2];
 			default:
-				return 0;
+				return this.timeSerie[this.currentValueIndex+2];
 		}
 	}
 

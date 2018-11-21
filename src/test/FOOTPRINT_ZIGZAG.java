@@ -247,8 +247,14 @@ public class FOOTPRINT_ZIGZAG {
 				if(this.timeSerieResults.get("p") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
 				} 
+				if(this.timeSerieResults.get("p") != null ){ 
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
+				} 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")){ 
+				if(this.timeSerieResults.get("p") != null ){ 
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
+				} 
 				if(this.timeSerieResults.get("p") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
 				} 
@@ -264,6 +270,9 @@ public class FOOTPRINT_ZIGZAG {
 				} 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "in")){ 
+				if(this.timeSerieResults.get("C") != null ){ 
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)); 
+				} 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)); 
 				} 
@@ -343,7 +352,7 @@ public class FOOTPRINT_ZIGZAG {
 			case FEATURE_ONE:
 				return 1;
 			case FEATURE_WIDTH:
-				return this.currentSignIndex;
+				return this.timeSerie.length + 1;
 			case FEATURE_SURFACE:
 				return Integer.MAX_VALUE;
 			case FEATURE_MAX:
@@ -383,11 +392,11 @@ public class FOOTPRINT_ZIGZAG {
 			case FEATURE_WIDTH:
 				return 1;
 			case FEATURE_SURFACE:
-				return this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+1];
 			case FEATURE_MAX:
-				return this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+1];
 			case FEATURE_MIN:
-				return this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+1];
 			case FEATURE_RANGE:
 				return this.currentValueIndex;
 			default:
@@ -398,19 +407,19 @@ public class FOOTPRINT_ZIGZAG {
 	private int deltaPrime(String feature) {
 		switch(feature) {
 			case FEATURE_ONE:
-				return -1;
+				return 1;
 			case FEATURE_WIDTH:
-				return -1;
+				return 1;
 			case FEATURE_SURFACE:
-				return -this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+2];
 			case FEATURE_MAX:
-				return 0;
+				return this.timeSerie[this.currentValueIndex+2];
 			case FEATURE_MIN:
-				return 0;
+				return this.timeSerie[this.currentValueIndex+2];
 			case FEATURE_RANGE:
-				return 0;
+				return this.timeSerie[this.currentValueIndex+2];
 			default:
-				return 0;
+				return this.timeSerie[this.currentValueIndex+2];
 		}
 	}
 
