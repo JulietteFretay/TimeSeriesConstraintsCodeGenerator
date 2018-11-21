@@ -157,90 +157,178 @@ public class TestFeature {
 		demarcation_feature();
 		
 		//Surf_BumpOnDecreasingSequence
+		System.out.println("Test : Surf BumpOnDecreasingSequence / Résultat attendu = [0,0,0,0,16,0,0,0,0,0,0,0,0,11,0,0]");
+		System.out.println();
+		FEATURE_BUMP_ON_DECREASING_SEQUENCE surf_bumpOnDecreasingSequence = new FEATURE_BUMP_ON_DECREASING_SEQUENCE();
+		surf_bumpOnDecreasingSequence.getResultForATimeSerie(new int[] {7,6,5,6,5,4,1,4,7,5,4,2,5,4,3,3},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Decreasing
+		System.out.println("Test : Surf Decreasing / Résultat attendu = [0,6,0,0,0,0,10,0,7,4,0,0,0,10,0,0]");
+		System.out.println();
+		FEATURE_DECREASING surf_decreasing = new FEATURE_DECREASING();
+		surf_decreasing.getResultForATimeSerie(new int[] {3,4,2,2,5,6,6,4,4,3,1,1,4,6,4,4},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_DecreasingSequence
+		System.out.println("Test : Surf DecreasingSequence / Résultat attendu = [0,6,0,0,0,0,18,0,0,0,0,0,0,10,0,0]");
+		System.out.println();
+		FEATURE_DECREASING_SEQUENCE surf_decreasingSequence = new FEATURE_DECREASING_SEQUENCE();
+		surf_decreasingSequence.getResultForATimeSerie(new int[] {3,4,2,2,5,6,6,4,4,3,1,1,4,6,4,4},"FEATURE_SURFACE",0,0);
 
 		demarcation_pattern();
 		
 		//Surf_DecreasingTerrace
+		System.out.println("Test : Surf DecreasingTerrace / Résultat attendu = [0,0,0,0,0,0,4,0,0,0,0,0,8,0,0,0]");
+		System.out.println();
+		FEATURE_DECREASING_TERRACE surf_decreasingTerrace = new FEATURE_DECREASING_TERRACE();
+		surf_decreasingTerrace.getResultForATimeSerie(new int[] {6,4,4,4,5,2,2,1,3,3,5,4,4,3,3,3},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_DipOnIncreasingSequence
+		System.out.println("Test : Surf DipOnIncreasingSequence / Résultat attendu = [0,0,0,0,10,0,0,0,0,0,0,0,0,9,0,0]");
+		System.out.println();
+		FEATURE_DIP_ON_INCREASING_SEQUENCE surf_dipOnIncreasingSequence = new FEATURE_DIP_ON_INCREASING_SEQUENCE();
+		surf_dipOnIncreasingSequence.getResultForATimeSerie(new int[] {1,2,3,2,5,6,7,4,1,3,4,6,1,2,4,4},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Gorge
+		System.out.println("Test : Surf Gorge / Résultat attendu = [0,0,11,0,0,0,0,0,0,0,0,0,9,0,5,0]");
+		System.out.println();
+		FEATURE_GORGE surf_gorge = new FEATURE_GORGE();
+		surf_gorge.getResultForATimeSerie(new int[] {1,7,3,4,4,5,5,4,2,2,6,5,4,6,5,7},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Increasing
+		System.out.println("Test : Surf Increasing / Résultat attendu = [0,8,0,0,0,0,4,0,7,10,0,0,0,4,0,0]");
+		System.out.println();
+		FEATURE_INCREASING surf_increasing = new FEATURE_INCREASING();
+		surf_increasing.getResultForATimeSerie(new int[] {4,3,5,5,2,1,1,3,3,4,6,6,3,1,3,3},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_IncreasingSequence
+		System.out.println("Test : Surf IncreasingSequence / Résultat attendu = [0,8,0,0,0,0,17,0,0,0,0,0,0,4,0,0]");
+		System.out.println();
+		FEATURE_INCREASING_SEQUENCE surf_increasingSequence = new FEATURE_INCREASING_SEQUENCE();
+		surf_increasingSequence.getResultForATimeSerie(new int[] {4,3,5,5,2,1,1,3,3,4,6,6,3,1,3,3},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_IncreasingTerrace
+		System.out.println("Test : Surf IncreasingTerrace / Résultat attendu = [0,0,0,0,0,0,10,0,0,0,0,0,0,9,0,0]");
+		System.out.println();
+		FEATURE_INCREASING_TERRACE surf_increasingTerrace = new FEATURE_INCREASING_TERRACE();
+		surf_increasingTerrace.getResultForATimeSerie(new int[] {1,3,3,3,2,5,5,6,4,4,2,3,3,3,4,4},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Inflexion
+		System.out.println("Test : Surf Inflexion / Résultat attendu = [0,0,0,14,0,0,11,5,2,5,1,5,0,6,0,0]");
+		System.out.println();
+		FEATURE_INFLEXION surf_inflexion = new FEATURE_INFLEXION();
+		surf_inflexion.getResultForATimeSerie(new int[] {1,2,6,6,4,4,3,5,2,5,1,5,3,3,4,4},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Peak
+		System.out.println("Test : Surf Peak / Résultat attendu = [0,0,0,0,0,9,0,0,0,0,14,0,0,0,9,0]");
+		System.out.println();
+		FEATURE_PEAK surf_peak = new FEATURE_PEAK();
+		surf_peak.getResultForATimeSerie(new int[] {7,5,5,1,4,5,2,2,3,5,6,2,3,3,3,1},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Plain
+		System.out.println("Test : Surf Plain / Résultat attendu = [0,0,0,5,0,0,0,4,0,0,0,0,6,0,0,0]");
+		System.out.println();
+		FEATURE_PLAIN surf_plain = new FEATURE_PLAIN();
+		surf_plain.getResultForATimeSerie(new int[] {2,3,6,5,7,6,6,4,5,5,4,3,3,6,6,3},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Plateau
+		System.out.println("Test : Surf Plateau / Résultat attendu = [0,0,0,3,0,0,0,4,0,0,0,0,10,0,0,0]");
+		System.out.println();
+		FEATURE_PLATEAU surf_plateau = new FEATURE_PLATEAU();
+		surf_plateau.getResultForATimeSerie(new int[] {7,5,2,3,1,2,2,4,3,3,4,5,5,2,2,5},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_ProperPlain
+		System.out.println("Test : Surf ProperPlain / Résultat attendu = [0,0,0,10,0,0,0,0,8,0,0,0,0,0,9,0]");
+		System.out.println();
+		FEATURE_PROPER_PLAIN surf_properPlain = new FEATURE_PROPER_PLAIN();
+		surf_properPlain.getResultForATimeSerie(new int[] {2,7,5,5,6,3,7,4,4,5,6,5,3,3,3,5},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_ProperPlateau
+		System.out.println("Test : Surf ProperPlateau / Résultat attendu = [0,0,0,6,0,0,0,0,8,0,0,0,0,0,15,0]");
+		System.out.println();
+		FEATURE_PROPER_PLATEAU surf_properPlateau = new FEATURE_PROPER_PLATEAU();
+		surf_properPlateau.getResultForATimeSerie(new int[] {7,1,3,3,2,5,1,4,4,3,2,3,5,5,5,3},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Steady
+		System.out.println("Test : Surf Steady / Résultat attendu = [2,0,0,6,0,10,10,0,0,10,10,0,0,0,12,0]");
+		System.out.println();
+		FEATURE_STEADY surf_steady = new FEATURE_STEADY();
+		surf_steady.getResultForATimeSerie(new int[] {1,1,7,3,3,5,5,5,6,5,5,5,7,2,6,6},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_SteadySequence
+		System.out.println("Test : Surf SteadySequence / Résultat attendu = [0,2,0,0,15,0,0,0,4,0,8,0,0,0,2,0]");
+		System.out.println();
+		FEATURE_STEADY_SEQUENCE surf_steadySequence = new FEATURE_STEADY_SEQUENCE();
+		surf_steadySequence.getResultForATimeSerie(new int[] {3,1,1,4,5,5,5,6,2,2,4,4,3,2,1,1},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_StrictlyDecreasingSequence
+		System.out.println("Test : Surf StrictlyDecreasingSequence / Résultat attendu = [0,0,11,0,0,0,0,0,0,0,13,0,0,0,7,0]");
+		System.out.println();
+		FEATURE_STRICTLY_DECREASING_SEQUENCE surf_strictlyDecreasingSequence = new FEATURE_STRICTLY_DECREASING_SEQUENCE();
+		surf_strictlyDecreasingSequence.getResultForATimeSerie(new int[] {4,4,6,4,1,1,3,4,4,6,6,5,2,2,4,3},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_StrictlyIncreasingSequence
+		System.out.println("Test : Surf StrictlyIncreasingSequence / Résultat attendu = [0,8,0,0,0,0,16,0,0,0,0,0,0,6,0,0]");
+		System.out.println();
+		FEATURE_STRICTLY_INCREASING_SEQUENCE surf_strictlyIncreasingSequence = new FEATURE_STRICTLY_INCREASING_SEQUENCE();
+		surf_strictlyIncreasingSequence.getResultForATimeSerie(new int[] {4,3,5,5,2,1,1,2,3,4,6,6,3,1,2,3},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Summit
+		System.out.println("Test : Surf Summit / Résultat attendu = [0,0,13,0,0,0,0,0,0,0,0,0,7,0,3,0]");
+		System.out.println();
+		FEATURE_SUMMIT surf_summit = new FEATURE_SUMMIT();
+		surf_summit.getResultForATimeSerie(new int[] {7,1,5,4,4,3,3,4,6,6,2,3,4,2,3,1},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Valley
+		System.out.println("Test : Surf Valley / Résultat attendu = [0,0,0,0,7,0,0,0,0,0,13,0,0,0,15,0]");
+		System.out.println();
+		FEATURE_VALLEY surf_valley = new FEATURE_VALLEY();
+		surf_valley.getResultForATimeSerie(new int[] {1,3,7,4,3,6,6,5,3,3,2,6,5,5,5,7},"FEATURE_SURFACE",0,0);
 		
 		demarcation_pattern();
 		
 		//Surf_Zigzag
+		System.out.println("Test : Surf Zigzag / Résultat attendu = [0,0,5,0,0,0,7,0,0,0,21,0,0,0,0,0]");
+		System.out.println();
+		FEATURE_ZIGZAG surf_zigzag = new FEATURE_ZIGZAG();
+		surf_zigzag.getResultForATimeSerie(new int[] {4,1,3,1,4,6,1,5,5,2,7,2,3,1,6,1},"FEATURE_SURFACE",0,0);
 		
 		demarcation_feature();
 		
