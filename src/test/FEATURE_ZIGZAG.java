@@ -1,7 +1,7 @@
 package test; 
 import java.util.ArrayList; 
 import java.util.HashMap; 
-public class FEATURE_DECREASING { 
+public class FEATURE_ZIGZAG { 
 	private int[] timeSerie; 
 	private HashMap<String, ArrayList<Integer>> timeSerieResults; 
 	private String  currentState; 
@@ -76,13 +76,108 @@ public class FEATURE_DECREASING {
 		while(this.currentValueIndex < this.timeSerie.length){
 		//Code timeSerie states 
 			if (this.currentState.equals("s") && ">".contains(this.timeSerieSigns[currentSignIndex])){
-				this.timeSerieStates[currentValueIndex] = "s";
-				this.timeSerieLetters[currentSignIndex] = "foundE";
+				this.timeSerieStates[currentValueIndex] = "d";
+				this.timeSerieLetters[currentSignIndex] = "out";
 				this.currentState = this.timeSerieStates[currentValueIndex] ;
 			}
-			else if (this.currentState.equals("s") && "<=".contains(this.timeSerieSigns[currentSignIndex])){
+			else if (this.currentState.equals("s") && "=".contains(this.timeSerieSigns[currentSignIndex])){
 				this.timeSerieStates[currentValueIndex] = "s";
 				this.timeSerieLetters[currentSignIndex] = "out";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("s") && "<".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "a";
+				this.timeSerieLetters[currentSignIndex] = "out";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("a") && ">".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "b";
+				this.timeSerieLetters[currentSignIndex] = "maybeB";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("a") && "=".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "s";
+				this.timeSerieLetters[currentSignIndex] = "out";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("a") && "<".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "a";
+				this.timeSerieLetters[currentSignIndex] = "out";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("b") && ">".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "d";
+				this.timeSerieLetters[currentSignIndex] = "outR";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("b") && "=".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "s";
+				this.timeSerieLetters[currentSignIndex] = "outR";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("b") && "<".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "c";
+				this.timeSerieLetters[currentSignIndex] = "found";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("c") && ">".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "f";
+				this.timeSerieLetters[currentSignIndex] = "in";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("c") && "=".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "s";
+				this.timeSerieLetters[currentSignIndex] = "outA";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("c") && "<".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "a";
+				this.timeSerieLetters[currentSignIndex] = "outA";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("d") && ">".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "d";
+				this.timeSerieLetters[currentSignIndex] = "out";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("d") && "=".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "s";
+				this.timeSerieLetters[currentSignIndex] = "out";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("d") && "<".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "e";
+				this.timeSerieLetters[currentSignIndex] = "maybeB";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("e") && ">".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "f";
+				this.timeSerieLetters[currentSignIndex] = "found";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("e") && "=".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "s";
+				this.timeSerieLetters[currentSignIndex] = "outR";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("e") && "<".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "a";
+				this.timeSerieLetters[currentSignIndex] = "outR";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("f") && ">".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "d";
+				this.timeSerieLetters[currentSignIndex] = "outA";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("f") && "=".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "s";
+				this.timeSerieLetters[currentSignIndex] = "outA";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("f") && "<".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "c";
+				this.timeSerieLetters[currentSignIndex] = "in";
 				this.currentState = this.timeSerieStates[currentValueIndex] ;
 			}
 			this.currentValueIndex ++;

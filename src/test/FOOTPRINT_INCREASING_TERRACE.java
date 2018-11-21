@@ -10,11 +10,21 @@ public class FOOTPRINT_INCREASING_TERRACE {
 	private String[] timeSerieSigns; 
 	private String[] timeSerieStates; 
 	private String[] timeSerieLetters; 
+	private int defaultVal; 
+	private int after; 
 	private HashMap<String, ArrayList<Integer>> timeSerieCounters; 
 	private HashMap<String, Integer> currentCounters; 
-	public void getResultForATimeSerie(int[] timeSerie, String feature, int defaultVal) {
+	public static final String FEATURE_ONE = "FEATURE_ONE";
+	public static final String FEATURE_WIDTH = "FEATURE_WIDTH";
+	public static final String FEATURE_SURFACE = "FEATURE_SURFACE";
+	public static final String FEATURE_MAX = "FEATURE_MAX";
+	public static final String FEATURE_MIN = "FEATURE_MIN";
+	public static final String FEATURE_RANGE = "FEATURE_RANGE";
+	public void getResultForATimeSerie(int[] timeSerie, String feature, int defaultVal, int after) {
 		this.timeSerieResults = new HashMap<String, ArrayList<Integer>>();
 		this.timeSerie = timeSerie;
+		this.defaultVal = defaultVal;
+		this.after = after;
 		System.out.println("TimeSerie Values : "+this.listToString(timeSerie));
 		this.currentState = "s";
 		int nbElements = timeSerie.length;
@@ -24,17 +34,18 @@ public class FOOTPRINT_INCREASING_TERRACE {
 		this.timeSerieLetters = new String[nbElements-1];
 		this.timeSerieCounters = new HashMap<String, ArrayList<Integer>>();
 		this.currentCounters = new HashMap<String, Integer>() ;
-		ArrayList<Integer> resultList = new ArrayList<Integer>();
+		ArrayList<Integer> resultListp = new ArrayList<Integer>();
 		for(int i = 0; i < timeSerie.length-1; i++) {
-			resultList.add(new Integer(0));
+			resultListp.add(new Integer(0));
 		}
-		this.timeSerieResults.put("p",resultList);
-		ArrayList<Integer> counterList = new ArrayList<Integer>();
-		counterList.add(new Integer(0));
+			resultListp.add(new Integer(0));
+		this.timeSerieResults.put("p",resultListp);
+		ArrayList<Integer> counterListC = new ArrayList<Integer>();
+		counterListC.add(new Integer(0));
 		for(int i = 0; i < timeSerie.length-2; i++) {
-			counterList.add(new Integer(0));
+			counterListC.add(new Integer(0));
 		}
-		this.timeSerieCounters.put("C",counterList);
+		this.timeSerieCounters.put("C",counterListC);
 		this.currentCounters.put("C",0);
 		//Code timeSerie signs 
 		this.timeSerieSigns = new String[nbElements - 1];
@@ -101,30 +112,30 @@ public class FOOTPRINT_INCREASING_TERRACE {
 		System.out.println("TimeSerie Letters : "+this.listToString(timeSerieLetters));
 		while(this.currentSignIndex < this.timeSerie.length-1){
 		//Code timeSerie counters 
-			if(this.timeSerieLetters[currentSignIndex].equals( "out")){ 
+			if(this.timeSerieLetters[currentSignIndex].equals( "out") && this.after ==0){ 
 				this.timeSerieResults.get("p").set(this.currentValueIndex+0,0); 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "outR")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "outR")&& this.after ==0){ 
 				this.timeSerieResults.get("p").set(this.currentValueIndex+0,0); 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "outA")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "outA")&& this.after ==0){ 
 				this.timeSerieResults.get("p").set(this.currentValueIndex+0,0); 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeB")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeB")&& this.after ==0){ 
 				if(this.timeSerieResults.get("p") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentSignIndex+1)); 
 				}else{ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("p").get(this.currentSignIndex+1)); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")&& this.after ==0){ 
 				if(this.timeSerieResults.get("p") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentSignIndex+1)); 
 				}else{ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("p").get(this.currentSignIndex+1)); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")&& this.after ==0){ 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentSignIndex+0)+1); 
 				}else{ 
@@ -135,7 +146,7 @@ public class FOOTPRINT_INCREASING_TERRACE {
 					this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "found")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "found")&& this.after ==0){ 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentSignIndex+0)+1); 
 				}else{ 
@@ -146,7 +157,7 @@ public class FOOTPRINT_INCREASING_TERRACE {
 					this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "in")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "in")&& this.after ==0){ 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentSignIndex+0)); 
 				}else{ 
@@ -222,5 +233,123 @@ public class FOOTPRINT_INCREASING_TERRACE {
 		}
 		res+="]";
 		return res;
+	}
+
+	private int neutral(String feature) {
+		switch(feature) {
+			case FEATURE_ONE:
+				return 1;
+			case FEATURE_WIDTH:
+				return 0;
+			case FEATURE_SURFACE:
+				return 0;
+			case FEATURE_MAX:
+				return Integer.MIN_VALUE;
+			case FEATURE_MIN:
+				return Integer.MAX_VALUE;
+			case FEATURE_RANGE:
+				return 0;
+			default:
+				return 0;
+		}
+	}
+
+	private int min(String feature) {
+		switch(feature) {
+			case FEATURE_ONE:
+				return 1;
+			case FEATURE_WIDTH:
+				return 0;
+			case FEATURE_SURFACE:
+				return Integer.MIN_VALUE;
+			case FEATURE_MAX:
+				return Integer.MIN_VALUE;
+			case FEATURE_MIN:
+				return Integer.MIN_VALUE;
+			case FEATURE_RANGE:
+				return 0;
+			default:
+				return 0;
+		}
+	}
+
+	private int max(String feature) {
+		switch(feature) {
+			case FEATURE_ONE:
+				return 1;
+			case FEATURE_WIDTH:
+				return this.currentSignIndex;
+			case FEATURE_SURFACE:
+				return Integer.MAX_VALUE;
+			case FEATURE_MAX:
+				return Integer.MAX_VALUE;
+			case FEATURE_MIN:
+				return Integer.MAX_VALUE;
+			case FEATURE_RANGE:
+				return Integer.MAX_VALUE;
+			default:
+				return 0; 
+		}
+	}
+
+	private int phi(String feature, int param1, int param2) {
+		switch(feature) {
+			case FEATURE_ONE:
+				return Math.max(param1, param2);
+			case FEATURE_WIDTH:
+				return param1 + param2;
+			case FEATURE_SURFACE:
+				return param1 + param2;
+			case FEATURE_MAX:
+				return Math.max(param1, param2);
+			case FEATURE_MIN:
+				return Math.min(param1, param2);
+			case FEATURE_RANGE:
+				return 0;
+			default:
+				return 0;
+		}
+	}
+
+	private int delta(String feature) {
+		switch(feature) {
+			case FEATURE_ONE:
+				return 0;
+			case FEATURE_WIDTH:
+				return 1;
+			case FEATURE_SURFACE:
+				return this.timeSerie[this.currentValueIndex];
+			case FEATURE_MAX:
+				return this.timeSerie[this.currentValueIndex];
+			case FEATURE_MIN:
+				return this.timeSerie[this.currentValueIndex];
+			case FEATURE_RANGE:
+				return this.currentValueIndex;
+			default:
+				return 0;
+		}
+	}
+
+	private int deltaPrime(String feature) {
+		switch(feature) {
+			case FEATURE_ONE:
+				return -1;
+			case FEATURE_WIDTH:
+				return -1;
+			case FEATURE_SURFACE:
+				return -this.timeSerie[this.currentValueIndex];
+			case FEATURE_MAX:
+				return 0;
+			case FEATURE_MIN:
+				return 0;
+			case FEATURE_RANGE:
+				return 0;
+			default:
+				return 0;
+		}
+	}
+
+	private int defaultF(String feature) {
+		return this.defaultVal;
 	}
 }

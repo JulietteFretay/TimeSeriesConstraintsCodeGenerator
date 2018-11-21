@@ -54,7 +54,7 @@ public class Generator {
 		generateCodeBuffer.append("\tpublic static final String FEATURE_RANGE = \"FEATURE_RANGE\";\n");
 
 		//Get Result 
-		generateCodeBuffer.append("\tpublic void getResultForATimeSerie(int[] timeSerie, String feature, int defaultVal,int after) {\n");		
+		generateCodeBuffer.append("\tpublic void getResultForATimeSerie(int[] timeSerie, String feature, int defaultVal, int after) {\n");		
 
 		generateCodeBuffer.append("\t\tthis.timeSerieResults = new HashMap<String, ArrayList<Integer>>();\n");	
 		generateCodeBuffer.append("\t\tthis.timeSerie = timeSerie;\n");	
@@ -79,7 +79,7 @@ public class Generator {
 		}
 		for(InstructionInit instruction : decorationTable.getInstructionsInit()){
 			generateCodeBuffer.append("\t\tArrayList<Integer> counterList"+instruction.getVar()+" = new ArrayList<Integer>();\n");
-			if(instruction.getFunction()){
+			if(instruction.getFunction() != null && instruction.getFunction()){
 				generateCodeBuffer.append("\t\tcounterList"+instruction.getVar()+".add(new Integer("+instruction.getInit()+"(feature)));\n");
 			}else{
 				generateCodeBuffer.append("\t\tcounterList"+instruction.getVar()+".add(new Integer("+instruction.getInit()+"));\n");

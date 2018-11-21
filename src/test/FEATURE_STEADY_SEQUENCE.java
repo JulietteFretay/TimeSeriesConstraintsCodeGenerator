@@ -1,7 +1,7 @@
 package test; 
 import java.util.ArrayList; 
 import java.util.HashMap; 
-public class FEATURE_DECREASING { 
+public class FEATURE_STEADY_SEQUENCE { 
 	private int[] timeSerie; 
 	private HashMap<String, ArrayList<Integer>> timeSerieResults; 
 	private String  currentState; 
@@ -75,14 +75,24 @@ public class FEATURE_DECREASING {
 		this.currentValueIndex = 1;
 		while(this.currentValueIndex < this.timeSerie.length){
 		//Code timeSerie states 
-			if (this.currentState.equals("s") && ">".contains(this.timeSerieSigns[currentSignIndex])){
-				this.timeSerieStates[currentValueIndex] = "s";
-				this.timeSerieLetters[currentSignIndex] = "foundE";
-				this.currentState = this.timeSerieStates[currentValueIndex] ;
-			}
-			else if (this.currentState.equals("s") && "<=".contains(this.timeSerieSigns[currentSignIndex])){
+			if (this.currentState.equals("s") && "<>".contains(this.timeSerieSigns[currentSignIndex])){
 				this.timeSerieStates[currentValueIndex] = "s";
 				this.timeSerieLetters[currentSignIndex] = "out";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("s") && "=".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "r";
+				this.timeSerieLetters[currentSignIndex] = "found";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("r") && "<>".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "s";
+				this.timeSerieLetters[currentSignIndex] = "outA";
+				this.currentState = this.timeSerieStates[currentValueIndex] ;
+			}
+			else if (this.currentState.equals("r") && "=".contains(this.timeSerieSigns[currentSignIndex])){
+				this.timeSerieStates[currentValueIndex] = "r";
+				this.timeSerieLetters[currentSignIndex] = "in";
 				this.currentState = this.timeSerieStates[currentValueIndex] ;
 			}
 			this.currentValueIndex ++;

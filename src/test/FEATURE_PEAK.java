@@ -20,7 +20,7 @@ public class FEATURE_PEAK {
 	public static final String FEATURE_MAX = "FEATURE_MAX";
 	public static final String FEATURE_MIN = "FEATURE_MIN";
 	public static final String FEATURE_RANGE = "FEATURE_RANGE";
-	public void getResultForATimeSerie(int[] timeSerie, String feature, int defaultVal,int after) {
+	public void getResultForATimeSerie(int[] timeSerie, String feature, int defaultVal, int after) {
 		this.timeSerieResults = new HashMap<String, ArrayList<Integer>>();
 		this.timeSerie = timeSerie;
 		this.defaultVal = defaultVal;
