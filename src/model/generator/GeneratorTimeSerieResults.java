@@ -1,8 +1,12 @@
 package model.generator;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 import model.parameters.decorationTable.DecorationTable;
+import model.parameters.decorationTable.FunctionParam;
 import model.parameters.decorationTable.Guard;
 import model.parameters.decorationTable.InstructionTable;
 import model.parameters.seedTemplate.SeedTemplate;
@@ -44,7 +48,7 @@ public class GeneratorTimeSerieResults {
 
 					}else if(guard.getFunction() != null && guard.getFunction()){
 						if(guard.getValue().equals("phi")){
-							System.out.println(guard.getFunparam());
+							generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature,"+getParameter(guard.getFunparam().get(0))+","+getParameter(guard.getFunparam().get(1))+")); \n");
 						}else{
 							if(guard.getAddValue() != null){
 								generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature)"+guard.getAddValue()+"); \n");
@@ -54,13 +58,85 @@ public class GeneratorTimeSerieResults {
 						}
 					}
 				}
+				for(Guard guard : Reversed.reversed(instruction.getGuards())){
+					if(guard.getAddValue() == null){
+						if(guard.getUseOther() != null && guard.getUseOther()){
+							generateCodeBuffer.append(this.indentation+"\t\tif(this.timeSerieResults.get(\""+guard.getValue()+"\") != null ){ \n");
+							if(guard.getAddValue() != null){
+								generateCodeBuffer.append(this.indentation+"\t\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+",this.timeSerieResults.get(\""+guard.getValue()+"\").get(this.currentValueIndex"+guard.getIndexOther()+")"+guard.getAddValue()+"); \n");
+							}else{
+								generateCodeBuffer.append(this.indentation+"\t\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+",this.timeSerieResults.get(\""+guard.getValue()+"\").get(this.currentValueIndex"+guard.getIndexOther()+")); \n");
+							}
+							generateCodeBuffer.append(this.indentation+"\t\t} \n");
+
+						}else if(guard.getFunction() != null && guard.getFunction()){
+							if(guard.getValue().equals("phi")){
+								generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature,"+getParameter(guard.getFunparam().get(0))+","+getParameter(guard.getFunparam().get(1))+")); \n");
+							}else{
+								if(guard.getAddValue() != null){
+									generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature)"+guard.getAddValue()+"); \n");
+								}else{
+									generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature)); \n");
+								}
+							}
+						}
+					}
+				}
 			}
 			generateCodeBuffer.append(this.indentation+"\t} \n");
 		}
+		
 
 	}
 
 	public void setIndentation(String string) {
 		this.indentation = string;
+	}
+	
+	public static class Reversed<T> implements Iterable<T> {
+	    private final ArrayList<T> original;
+
+	    public Reversed(ArrayList<T> original) {
+	        this.original = original;
+	    }
+
+	    public Iterator<T> iterator() {
+	        final ListIterator<T> i = original.listIterator(original.size());
+
+	        return new Iterator<T>() {
+	            public boolean hasNext() { return i.hasPrevious(); }
+	            public T next() { return i.previous(); }
+	            public void remove() { i.remove(); }
+	        };
+	    }
+
+	    public static <T> Reversed<T> reversed(ArrayList<T> original) {
+	        return new Reversed<T>(original);
+	    }
+	}
+	
+	private String getParameter(FunctionParam functionParam) {
+		if(functionParam.getFunction()){
+			String s = functionParam.getValue()+"(";
+			if(functionParam.getValue().equals("defaultF")){
+
+			}else{
+				s+="feature";
+				if(functionParam.getFunparam() != null){
+					for(FunctionParam param : functionParam.getFunparam()){
+						s+=",";
+						s+=getParameter(param);
+					}
+				}
+
+			}
+			s+=")";
+			return s;
+		} else if(functionParam.isUseOther()){
+			String s ="this.currentCounters.get(\""+functionParam.getValue()+"\")";
+			return s;
+		}else{
+			return functionParam.getValue();
+		}
 	}
 }

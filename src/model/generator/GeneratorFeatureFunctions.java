@@ -46,7 +46,7 @@ public class GeneratorFeatureFunctions {
         generateCodeBuffer.append("\t\t\tcase FEATURE_ONE:\n");
         generateCodeBuffer.append("\t\t\t\treturn 1;\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_WIDTH:\n");
-        generateCodeBuffer.append("\t\t\t\treturn this.currentSignIndex;\n");
+        generateCodeBuffer.append("\t\t\t\treturn this.timeSerie.length + 1;\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_SURFACE:\n");
         generateCodeBuffer.append("\t\t\t\treturn Integer.MAX_VALUE;\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_MAX:\n");
@@ -86,11 +86,11 @@ public class GeneratorFeatureFunctions {
         generateCodeBuffer.append("\t\t\tcase FEATURE_WIDTH:\n");
         generateCodeBuffer.append("\t\t\t\treturn 1;\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_SURFACE:\n");
-        generateCodeBuffer.append("\t\t\t\treturn this.timeSerie[this.currentValueIndex];\n");
+        generateCodeBuffer.append("\t\t\t\treturn this.timeSerie[this.currentValueIndex+1];\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_MAX:\n");
-        generateCodeBuffer.append("\t\t\t\treturn this.timeSerie[this.currentValueIndex];\n");
+        generateCodeBuffer.append("\t\t\t\treturn this.timeSerie[this.currentValueIndex+1];\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_MIN:\n");
-        generateCodeBuffer.append("\t\t\t\treturn this.timeSerie[this.currentValueIndex];\n");
+        generateCodeBuffer.append("\t\t\t\treturn this.timeSerie[this.currentValueIndex+1];\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_RANGE:\n");
         generateCodeBuffer.append("\t\t\t\treturn this.currentValueIndex;\n");
         generateCodeBuffer.append("\t\t\tdefault:\n");
@@ -105,11 +105,11 @@ public class GeneratorFeatureFunctions {
         generateCodeBuffer.append("\t\t\tcase FEATURE_WIDTH:\n");
         generateCodeBuffer.append("\t\t\t\treturn -1;\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_SURFACE:\n");
-        generateCodeBuffer.append("\t\t\t\treturn -this.timeSerie[this.currentValueIndex];\n");
+        generateCodeBuffer.append("\t\t\t\treturn (-1) * this.timeSerie[this.currentValueIndex+1];\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_MAX:\n");
-        generateCodeBuffer.append("\t\t\t\treturn 0;\n");
+        generateCodeBuffer.append("\t\t\t\treturn Integer.MIN_VALUE;\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_MIN:\n");
-        generateCodeBuffer.append("\t\t\t\treturn 0;\n");
+        generateCodeBuffer.append("\t\t\t\treturn Integer.MAX_VALUE;\n");
         generateCodeBuffer.append("\t\t\tcase FEATURE_RANGE:\n");
         generateCodeBuffer.append("\t\t\t\treturn 0;\n");
         generateCodeBuffer.append("\t\t\tdefault:\n");
