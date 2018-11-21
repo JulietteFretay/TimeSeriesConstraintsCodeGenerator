@@ -34,18 +34,18 @@ public class FEATURE_PEAK {
 		this.timeSerieLetters = new String[nbElements-1];
 		this.timeSerieCounters = new HashMap<String, ArrayList<Integer>>();
 		this.currentCounters = new HashMap<String, Integer>() ;
-		ArrayList<Integer> resultListf = new ArrayList<Integer>();
-		for(int i = 0; i < timeSerie.length-1; i++) {
-			resultListf.add(new Integer(0));
-		}
-			resultListf.add(new Integer(0));
-		this.timeSerieResults.put("f",resultListf);
 		ArrayList<Integer> resultListe = new ArrayList<Integer>();
 		for(int i = 0; i < timeSerie.length-1; i++) {
 			resultListe.add(new Integer(0));
 		}
 			resultListe.add(new Integer(0));
 		this.timeSerieResults.put("e",resultListe);
+		ArrayList<Integer> resultListf = new ArrayList<Integer>();
+		for(int i = 0; i < timeSerie.length-1; i++) {
+			resultListf.add(new Integer(0));
+		}
+			resultListf.add(new Integer(0));
+		this.timeSerieResults.put("f",resultListf);
 		ArrayList<Integer> counterListC = new ArrayList<Integer>();
 		counterListC.add(new Integer(neutral(feature)));
 		for(int i = 0; i < timeSerie.length-2; i++) {
@@ -127,7 +127,7 @@ public class FEATURE_PEAK {
 			else if(this.timeSerieLetters[currentSignIndex].equals( "outR")){ 
 				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",neutral(feature)); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
@@ -139,11 +139,11 @@ public class FEATURE_PEAK {
 				}else{ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieCounters.get("C").get(this.currentSignIndex+0)); 
 				} 
-				this.currentCounters.replace("C",this.currentCounters.get("C")); 
+				this.currentCounters.replace("C",defaultF(feature)); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
 				} 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",neutral(feature)); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
@@ -155,7 +155,7 @@ public class FEATURE_PEAK {
 				}else{ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieCounters.get("e").get(this.currentSignIndex+1)); 
 				} 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",phi(feature,this.currentCounters.get("D"),delta(feature))); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
@@ -167,7 +167,7 @@ public class FEATURE_PEAK {
 				}else{ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieCounters.get("e").get(this.currentSignIndex+1)); 
 				} 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",phi(feature,this.currentCounters.get("D"),deltaPrime(feature))); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
@@ -179,7 +179,7 @@ public class FEATURE_PEAK {
 				}else{ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieCounters.get("e").get(this.currentSignIndex+1)); 
 				} 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",phi(feature,this.currentCounters.get("D"),delta(feature))); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
@@ -195,11 +195,11 @@ public class FEATURE_PEAK {
 				}else{ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieCounters.get("e").get(this.currentSignIndex+1)); 
 				} 
-				this.currentCounters.replace("C",this.currentCounters.get("C")); 
+				this.currentCounters.replace("C",phi(feature,phi(feature,this.currentCounters.get("D"),delta(feature)),deltaPrime(feature))); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
 				} 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",neutral(feature)); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
@@ -215,11 +215,11 @@ public class FEATURE_PEAK {
 				}else{ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieCounters.get("e").get(this.currentSignIndex+1)); 
 				} 
-				this.currentCounters.replace("C",this.currentCounters.get("C")); 
+				this.currentCounters.replace("C",phi(feature,this.currentCounters.get("D"),deltaPrime(feature))); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
 				} 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",neutral(feature)); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
@@ -231,11 +231,11 @@ public class FEATURE_PEAK {
 				}else{ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieCounters.get("e").get(this.currentSignIndex+1)); 
 				} 
-				this.currentCounters.replace("C",this.currentCounters.get("C")); 
+				this.currentCounters.replace("C",phi(feature,this.currentCounters.get("C"),phi(feature,this.currentCounters.get("D"),deltaPrime(feature)))); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
 				} 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",neutral(feature)); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
@@ -247,25 +247,27 @@ public class FEATURE_PEAK {
 				}else{ 
 					this.timeSerieResults.get("e").set(this.currentValueIndex+0,this.timeSerieCounters.get("e").get(this.currentSignIndex+1)); 
 				} 
-				this.currentCounters.replace("C",this.currentCounters.get("C")); 
+				this.currentCounters.replace("C",phi(feature,this.currentCounters.get("C"),phi(feature,this.currentCounters.get("D"),delta(feature)))); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
 				} 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",neutral(feature)); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")&& this.after ==0){ 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.currentCounters.get("D"),delta(feature)),deltaPrime(feature))); 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",neutral(feature)); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")&& this.after ==1){ 
+				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.currentCounters.get("D"),delta(feature))); 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
-				this.currentCounters.replace("D",this.currentCounters.get("D")); 
+				this.currentCounters.replace("D",neutral(feature)); 
 				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("D").set(i,this.currentCounters.get("D")); 
 				} 
@@ -452,33 +454,33 @@ public class FEATURE_PEAK {
 		}
 	}
 
-	private int delta(String feature, int index) {
+	private int delta(String feature) {
 		switch(feature) {
 			case FEATURE_ONE:
 				return 0;
 			case FEATURE_WIDTH:
 				return 1;
 			case FEATURE_SURFACE:
-				return this.timeSerie[index];
+				return this.timeSerie[this.currentValueIndex];
 			case FEATURE_MAX:
-				return this.timeSerie[index];
+				return this.timeSerie[this.currentValueIndex];
 			case FEATURE_MIN:
-				return this.timeSerie[index];
+				return this.timeSerie[this.currentValueIndex];
 			case FEATURE_RANGE:
-				return this.timeSerie[index];
+				return this.currentValueIndex;
 			default:
 				return 0;
 		}
 	}
 
-	private int deltaPrime(String feature, int index) {
+	private int deltaPrime(String feature) {
 		switch(feature) {
 			case FEATURE_ONE:
-				return 0;
+				return -1;
 			case FEATURE_WIDTH:
-				return 0;
+				return -1;
 			case FEATURE_SURFACE:
-				return 0;
+				return -this.timeSerie[this.currentValueIndex];
 			case FEATURE_MAX:
 				return 0;
 			case FEATURE_MIN:

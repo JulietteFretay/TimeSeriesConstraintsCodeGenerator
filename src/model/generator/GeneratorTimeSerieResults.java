@@ -1,5 +1,7 @@
 package model.generator;
 
+import java.util.Collections;
+
 import model.parameters.decorationTable.DecorationTable;
 import model.parameters.decorationTable.Guard;
 import model.parameters.decorationTable.InstructionTable;

@@ -14,18 +14,19 @@
 	],
 	"instructionsFinal": [
 		{
-			"var": "f",
-			"index": "n",
-			"function": "true",
-			"value": "defaultF"
-		},
-		{
 			"var": "e",
 			"index": "n",
 			"useOther": "true",
 			"value": "C",
 			"indexOther":"+0"
+		},
+		{
+			"var": "f",
+			"index": "n",
+			"function": "true",
+			"value": "defaultF"
 		}
+
 	],
 	"instructionsTable": [
 		{
@@ -124,6 +125,7 @@
 					"value": "phi",
 					"funparam": [
 						{
+							"useOther":"true",
 							"value":"D"
 						},
 						{
@@ -159,6 +161,7 @@
 					"value": "phi",
 					"funparam": [
 						{
+							"useOther":"true",
 							"value":"D"
 						},
 						{
@@ -194,6 +197,7 @@
 					"value": "phi",
 					"funparam": [
 						{
+							"useOther":"true",
 							"value":"D"
 						},
 						{
@@ -234,6 +238,7 @@
 							"value": "phi",
 							"funparam": [
 								{
+									"useOther":"true",
 									"value":"D"
 								},
 								{
@@ -281,6 +286,7 @@
 					"value": "phi",
 					"funparam": [
 						{
+							"useOther":"true",
 							"value":"D"
 						},
 						{
@@ -321,6 +327,7 @@
 					"value": "phi",
 					"funparam": [
 						{
+							"useOther":"true",
 							"value":"C"
 						},
 						{
@@ -328,6 +335,7 @@
 							"value": "phi",
 							"funparam": [
 								{
+									"useOther":"true",
 									"value":"D"
 								},
 								{
@@ -369,7 +377,8 @@
 					"function": "true",
 					"value": "phi",
 					"funparam": [
-						{
+						{	
+							"useOther":"true",
 							"value":"C"
 						},
 						{
@@ -377,6 +386,7 @@
 							"value": "phi",
 							"funparam": [
 								{
+									"useOther":"true",
 									"value":"D"
 								},
 								{
@@ -409,6 +419,7 @@
 							"value": "phi",
 							"funparam": [
 								{
+									"useOther":"true",
 									"value":"D"
 								},
 								{
@@ -449,6 +460,7 @@
 					"value":"phi",
 					"funparam":[
 						{
+							"useOther":"true",
 							"value":"D"
 						},
 						{

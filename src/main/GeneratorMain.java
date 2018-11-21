@@ -18,7 +18,7 @@ public class GeneratorMain {
 		String fileDecorationTable = "DecorationTables/FeatureDecorationTable.json";
 		//System.out.println("Veuillez entrer le chemin du fichier json du seed transducer");
 		//String fileSeedTemplate = br.readLine();
-		String fileSeedTemplate = "SeedTemplates/PeakSeedTemplate.json";
+		String fileSeedTemplate = "SeedTemplates/DecreasingSeedTemplate.json";
 		
 		DecorationTable table = DecorationTableParser.parseDecorationTable(fileDecorationTable);
 		SeedTemplate seed = SeedTemplateParser.parseSeedTemplate(fileSeedTemplate);
