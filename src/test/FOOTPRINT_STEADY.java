@@ -152,8 +152,14 @@ public class FOOTPRINT_STEADY {
 				if(this.timeSerieResults.get("p") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
 				} 
+				if(this.timeSerieResults.get("p") != null ){ 
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
+				} 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")){ 
+				if(this.timeSerieResults.get("p") != null ){ 
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
+				} 
 				if(this.timeSerieResults.get("p") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
 				} 
@@ -169,6 +175,9 @@ public class FOOTPRINT_STEADY {
 				} 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "in")){ 
+				if(this.timeSerieResults.get("C") != null ){ 
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)); 
+				} 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)); 
 				} 
@@ -248,7 +257,7 @@ public class FOOTPRINT_STEADY {
 			case FEATURE_ONE:
 				return 1;
 			case FEATURE_WIDTH:
-				return this.currentSignIndex;
+				return this.timeSerie.length + 1;
 			case FEATURE_SURFACE:
 				return Integer.MAX_VALUE;
 			case FEATURE_MAX:
@@ -288,11 +297,11 @@ public class FOOTPRINT_STEADY {
 			case FEATURE_WIDTH:
 				return 1;
 			case FEATURE_SURFACE:
-				return this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+1];
 			case FEATURE_MAX:
-				return this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+1];
 			case FEATURE_MIN:
-				return this.timeSerie[this.currentValueIndex];
+				return this.timeSerie[this.currentValueIndex+1];
 			case FEATURE_RANGE:
 				return this.currentValueIndex;
 			default:
@@ -307,11 +316,11 @@ public class FOOTPRINT_STEADY {
 			case FEATURE_WIDTH:
 				return -1;
 			case FEATURE_SURFACE:
-				return -this.timeSerie[this.currentValueIndex];
+				return (-1) * this.timeSerie[this.currentValueIndex+1];
 			case FEATURE_MAX:
-				return 0;
+				return Integer.MIN_VALUE;
 			case FEATURE_MIN:
-				return 0;
+				return Integer.MAX_VALUE;
 			case FEATURE_RANGE:
 				return 0;
 			default:
