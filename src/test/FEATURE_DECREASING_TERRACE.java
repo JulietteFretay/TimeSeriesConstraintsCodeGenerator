@@ -40,13 +40,13 @@ public class FEATURE_DECREASING_TERRACE {
 		for(int i = 0; i < timeSerie.length-1; i++) {
 			resultListe.add(new Integer(0));
 		}
-			resultListe.add(new Integer(0));
+		resultListe.add(new Integer(0));
 		this.timeSerieResults.put("e",resultListe);
 		ArrayList<Integer> resultListf = new ArrayList<Integer>();
 		for(int i = 0; i < timeSerie.length-1; i++) {
 			resultListf.add(new Integer(0));
 		}
-			resultListf.add(new Integer(0));
+		resultListf.add(new Integer(0));
 		this.timeSerieResults.put("f",resultListf);
 		ArrayList<Integer> counterListC = new ArrayList<Integer>();
 		counterListC.add(new Integer(neutral(feature)));
@@ -450,32 +450,32 @@ public class FEATURE_DECREASING_TERRACE {
 				this.timeSerieResults.get("f").set(this.currentValueIndex+0,defaultF(feature)); 
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")&& this.after ==0){ 
-				if (this.currentValueIndex >0) {
-				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.timeSerieCounters.get("D").get(this.currentValueIndex-1),delta(feature)),deltaPrime(feature))); 
-				} else {
-				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.initCounters.get("D"),delta(feature)),deltaPrime(feature))); 
-				}
+					if (this.currentValueIndex >0) {
+					this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.timeSerieCounters.get("D").get(this.currentValueIndex-1),delta(feature)),deltaPrime(feature))); 
+					} else {
+					this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.initCounters.get("D"),delta(feature)),deltaPrime(feature))); 
+					}
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
-				if (this.currentValueIndex >0) {
-				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.timeSerieCounters.get("D").get(this.currentValueIndex-1),delta(feature)),deltaPrime(feature))); 
-				} else {
-				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.initCounters.get("D"),delta(feature)),deltaPrime(feature))); 
-				}
+					if (this.currentValueIndex >0) {
+					this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.timeSerieCounters.get("D").get(this.currentValueIndex-1),delta(feature)),deltaPrime(feature))); 
+					} else {
+					this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,phi(feature,this.initCounters.get("D"),delta(feature)),deltaPrime(feature))); 
+					}
 			} 
 			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")&& this.after ==1){ 
-				if (this.currentValueIndex >0) {
-				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.timeSerieCounters.get("D").get(this.currentValueIndex-1),delta(feature))); 
-				} else {
-				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.initCounters.get("D"),delta(feature))); 
-				}
+					if (this.currentValueIndex >0) {
+					this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.timeSerieCounters.get("D").get(this.currentValueIndex-1),delta(feature))); 
+					} else {
+					this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.initCounters.get("D"),delta(feature))); 
+					}
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
 				this.timeSerieResults.get("e").set(this.currentValueIndex+0,defaultF(feature)); 
-				if (this.currentValueIndex >0) {
-				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.timeSerieCounters.get("D").get(this.currentValueIndex-1),delta(feature))); 
-				} else {
-				this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.initCounters.get("D"),delta(feature))); 
-				}
+					if (this.currentValueIndex >0) {
+					this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.timeSerieCounters.get("D").get(this.currentValueIndex-1),delta(feature))); 
+					} else {
+					this.timeSerieResults.get("f").set(this.currentValueIndex+0,phi(feature,this.initCounters.get("D"),delta(feature))); 
+					}
 			} 
 			this.currentValueIndex --;
 			this.currentSignIndex --;
@@ -612,27 +612,27 @@ public class FEATURE_DECREASING_TERRACE {
 				return 1;
 			case FEATURE_SURFACE:
 				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
-				return this.timeSerie[this.currentValueIndex+1];
+					return this.timeSerie[this.currentValueIndex+1];
 				}
 				return 0;
 			case FEATURE_MAX:
 				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
-				return this.timeSerie[this.currentValueIndex+1];
+					return this.timeSerie[this.currentValueIndex+1];
 				}
 				return 0;
 			case FEATURE_MIN:
 				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
-				return this.timeSerie[this.currentValueIndex+1];
+					return this.timeSerie[this.currentValueIndex+1];
 				}
 				return 0;
 			case FEATURE_RANGE:
 				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
-				return this.timeSerie[this.currentValueIndex+1];
+					return this.timeSerie[this.currentValueIndex+1];
 				}
 				return 0;
 			default:
 				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
-				return this.timeSerie[this.currentValueIndex+1];
+					return this.timeSerie[this.currentValueIndex+1];
 				}
 				return 0;
 		}

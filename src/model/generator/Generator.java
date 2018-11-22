@@ -76,7 +76,7 @@ public class Generator {
 			generateCodeBuffer.append("\t\tfor(int i = 0; i < timeSerie.length-1; i++) {\n");
 			generateCodeBuffer.append("\t\t\tresultList"+instruction.getVar()+".add(new Integer(0));\n");
 			generateCodeBuffer.append("\t\t}\n");
-			generateCodeBuffer.append("\t\t\tresultList"+instruction.getVar()+".add(new Integer(0));\n");
+			generateCodeBuffer.append("\t\tresultList"+instruction.getVar()+".add(new Integer(0));\n");
 			generateCodeBuffer.append("\t\tthis.timeSerieResults.put(\""+instruction.getVar()+"\",resultList"+instruction.getVar()+");\n");	
 		}
 		for(InstructionInit instruction : decorationTable.getInstructionsInit()){

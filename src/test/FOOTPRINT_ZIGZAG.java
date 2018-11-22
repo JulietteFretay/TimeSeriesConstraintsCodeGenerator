@@ -40,7 +40,7 @@ public class FOOTPRINT_ZIGZAG {
 		for(int i = 0; i < timeSerie.length-1; i++) {
 			resultListp.add(new Integer(0));
 		}
-			resultListp.add(new Integer(0));
+		resultListp.add(new Integer(0));
 		this.timeSerieResults.put("p",resultListp);
 		ArrayList<Integer> counterListC = new ArrayList<Integer>();
 		counterListC.add(new Integer(0));
@@ -433,27 +433,27 @@ public class FOOTPRINT_ZIGZAG {
 				return 1;
 			case FEATURE_SURFACE:
 				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
-				return this.timeSerie[this.currentValueIndex+1];
+					return this.timeSerie[this.currentValueIndex+1];
 				}
 				return 0;
 			case FEATURE_MAX:
 				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
-				return this.timeSerie[this.currentValueIndex+1];
+					return this.timeSerie[this.currentValueIndex+1];
 				}
 				return 0;
 			case FEATURE_MIN:
 				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
-				return this.timeSerie[this.currentValueIndex+1];
+					return this.timeSerie[this.currentValueIndex+1];
 				}
 				return 0;
 			case FEATURE_RANGE:
 				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
-				return this.timeSerie[this.currentValueIndex+1];
+					return this.timeSerie[this.currentValueIndex+1];
 				}
 				return 0;
 			default:
 				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
-				return this.timeSerie[this.currentValueIndex+1];
+					return this.timeSerie[this.currentValueIndex+1];
 				}
 				return 0;
 		}

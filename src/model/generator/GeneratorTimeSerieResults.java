@@ -56,11 +56,11 @@ public class GeneratorTimeSerieResults {
 
 					}else if(guard.getFunction() != null && guard.getFunction()){
 						if(guard.getValue().equals("phi")){
-							generateCodeBuffer.append(this.indentation+"\t\tif (this.currentValueIndex >0) {\n");
-							generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature,"+getParameter(guard.getFunparam().get(0),false)+","+getParameter(guard.getFunparam().get(1),false)+")); \n");
-							generateCodeBuffer.append(this.indentation+"\t\t} else {\n");
-							generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature,"+getParameter(guard.getFunparam().get(0),true)+","+getParameter(guard.getFunparam().get(1),true)+")); \n");
-							generateCodeBuffer.append(this.indentation+"\t\t}\n");
+							generateCodeBuffer.append(this.indentation+"\t\t\tif (this.currentValueIndex >0) {\n");
+							generateCodeBuffer.append(this.indentation+"\t\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature,"+getParameter(guard.getFunparam().get(0),false)+","+getParameter(guard.getFunparam().get(1),false)+")); \n");
+							generateCodeBuffer.append(this.indentation+"\t\t\t} else {\n");
+							generateCodeBuffer.append(this.indentation+"\t\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature,"+getParameter(guard.getFunparam().get(0),true)+","+getParameter(guard.getFunparam().get(1),true)+")); \n");
+							generateCodeBuffer.append(this.indentation+"\t\t\t}\n");
 						}else{
 							if(guard.getAddValue() != null){
 								generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature)"+guard.getAddValue()+"); \n");
@@ -97,11 +97,11 @@ public class GeneratorTimeSerieResults {
 
 						}else if(guard.getFunction() != null && guard.getFunction()){
 							if(guard.getValue().equals("phi")){
-								generateCodeBuffer.append(this.indentation+"\t\tif (this.currentValueIndex >0) {\n");
-								generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature,"+getParameter(guard.getFunparam().get(0),false)+","+getParameter(guard.getFunparam().get(1),false)+")); \n");
-								generateCodeBuffer.append(this.indentation+"\t\t} else {\n");
-								generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature,"+getParameter(guard.getFunparam().get(0),true)+","+getParameter(guard.getFunparam().get(1),true)+")); \n");
-								generateCodeBuffer.append(this.indentation+"\t\t}\n");
+								generateCodeBuffer.append(this.indentation+"\t\t\tif (this.currentValueIndex >0) {\n");
+								generateCodeBuffer.append(this.indentation+"\t\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature,"+getParameter(guard.getFunparam().get(0),false)+","+getParameter(guard.getFunparam().get(1),false)+")); \n");
+								generateCodeBuffer.append(this.indentation+"\t\t\t} else {\n");
+								generateCodeBuffer.append(this.indentation+"\t\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature,"+getParameter(guard.getFunparam().get(0),true)+","+getParameter(guard.getFunparam().get(1),true)+")); \n");
+								generateCodeBuffer.append(this.indentation+"\t\t\t}\n");
 							}else{
 								if(guard.getAddValue() != null){
 									generateCodeBuffer.append(this.indentation+"\t\tthis.timeSerieResults.get(\""+guard.getVar()+"\").set(this.currentValueIndex"+guard.getIndex()+","+guard.getValue()+"(feature)"+guard.getAddValue()+"); \n");
