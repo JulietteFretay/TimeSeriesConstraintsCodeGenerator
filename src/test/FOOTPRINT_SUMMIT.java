@@ -14,6 +14,7 @@ public class FOOTPRINT_SUMMIT {
 	private int after; 
 	private HashMap<String, ArrayList<Integer>> timeSerieCounters; 
 	private HashMap<String, Integer> currentCounters; 
+	private HashMap<String, Integer> initCounters; 
 	public static final String FEATURE_ONE = "FEATURE_ONE";
 	public static final String FEATURE_WIDTH = "FEATURE_WIDTH";
 	public static final String FEATURE_SURFACE = "FEATURE_SURFACE";
@@ -34,6 +35,7 @@ public class FOOTPRINT_SUMMIT {
 		this.timeSerieLetters = new String[nbElements-1];
 		this.timeSerieCounters = new HashMap<String, ArrayList<Integer>>();
 		this.currentCounters = new HashMap<String, Integer>() ;
+		this.initCounters = new HashMap<String, Integer>() ;
 		ArrayList<Integer> resultListp = new ArrayList<Integer>();
 		for(int i = 0; i < timeSerie.length-1; i++) {
 			resultListp.add(new Integer(0));
@@ -42,11 +44,12 @@ public class FOOTPRINT_SUMMIT {
 		this.timeSerieResults.put("p",resultListp);
 		ArrayList<Integer> counterListC = new ArrayList<Integer>();
 		counterListC.add(new Integer(0));
+		this.initCounters.put("C",new Integer(0));
 		for(int i = 0; i < timeSerie.length-2; i++) {
-			counterListC.add(new Integer(0));
+			counterListC.add(new Integer(this.initCounters.get("C")));
 		}
 		this.timeSerieCounters.put("C",counterListC);
-		this.currentCounters.put("C",0);
+		this.currentCounters.put("C",this.initCounters.get("C"));
 		//Code timeSerie signs 
 		this.timeSerieSigns = new String[nbElements - 1];
 		for (int i = 0; i < nbElements - 1; i++) {
@@ -157,7 +160,7 @@ public class FOOTPRINT_SUMMIT {
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("C").get(this.currentSignIndex+0)+1); 
 				} 
 				this.currentCounters.replace("C",this.currentCounters.get("C")+1); 
-				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
+				for(int i=this.currentSignIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
 				} 
 			} 
@@ -168,7 +171,7 @@ public class FOOTPRINT_SUMMIT {
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("C").get(this.currentSignIndex+0)+1); 
 				} 
 				this.currentCounters.replace("C",this.currentCounters.get("C")+1); 
-				for(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ 
+				for(int i=this.currentSignIndex;i<this.timeSerie.length-1;i++){ 
 					this.timeSerieCounters.get("C").set(i,this.currentCounters.get("C")); 
 				} 
 			} 
@@ -187,45 +190,63 @@ public class FOOTPRINT_SUMMIT {
 		System.out.println("TimeSerie Counters : "+this.timeSerieCounters);
 		while(this.currentSignIndex >=0){
 		//Code timeSerie results 
-			if(this.timeSerieLetters[currentSignIndex].equals( "out")){ 
+			if(this.timeSerieLetters[currentSignIndex].equals( "out") && this.after ==0){ 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "outR")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "outR")&& this.after ==0){ 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "outA")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "outA")&& this.after ==0){ 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeB")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeB")&& this.after ==0){ 
 				if(this.timeSerieResults.get("p") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
 				} 
 				if(this.timeSerieResults.get("p") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
-				} 
+				} else { 
+				if (this.currentValueIndex >0) {
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("p").get(this.currentValueIndex-1)); 
+				} else {
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.initCounters.get("p")); 
+				}
+				}
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "maybeA")&& this.after ==0){ 
 				if(this.timeSerieResults.get("p") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
 				} 
 				if(this.timeSerieResults.get("p") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("p").get(this.currentValueIndex+1)); 
-				} 
+				} else { 
+				if (this.currentValueIndex >0) {
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("p").get(this.currentValueIndex-1)); 
+				} else {
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.initCounters.get("p")); 
+				}
+				}
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "foundE")&& this.after ==0){ 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)+1); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "found")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "found")&& this.after ==0){ 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)+1); 
 				} 
 			} 
-			else if(this.timeSerieLetters[currentSignIndex].equals( "in")){ 
+			else if(this.timeSerieLetters[currentSignIndex].equals( "in")&& this.after ==0){ 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)); 
 				} 
 				if(this.timeSerieResults.get("C") != null ){ 
 					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieResults.get("C").get(this.currentValueIndex+0)); 
-				} 
+				} else { 
+				if (this.currentValueIndex >0) {
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.timeSerieCounters.get("C").get(this.currentValueIndex-1)); 
+				} else {
+					this.timeSerieResults.get("p").set(this.currentValueIndex+0,this.initCounters.get("C")); 
+				}
+				}
 			} 
 			this.currentValueIndex --;
 			this.currentSignIndex --;
@@ -262,7 +283,7 @@ public class FOOTPRINT_SUMMIT {
 	private int neutral(String feature) {
 		switch(feature) {
 			case FEATURE_ONE:
-				return 1;
+				return 0;
 			case FEATURE_WIDTH:
 				return 0;
 			case FEATURE_SURFACE:
@@ -281,7 +302,7 @@ public class FOOTPRINT_SUMMIT {
 	private int min(String feature) {
 		switch(feature) {
 			case FEATURE_ONE:
-				return 1;
+				return 0;
 			case FEATURE_WIDTH:
 				return 0;
 			case FEATURE_SURFACE:
@@ -338,17 +359,17 @@ public class FOOTPRINT_SUMMIT {
 	private int delta(String feature) {
 		switch(feature) {
 			case FEATURE_ONE:
-				return 0;
+				return 1;
 			case FEATURE_WIDTH:
 				return 1;
 			case FEATURE_SURFACE:
-				return this.timeSerie[this.currentValueIndex+1];
+				return this.timeSerie[this.currentValueIndex];
 			case FEATURE_MAX:
-				return this.timeSerie[this.currentValueIndex+1];
+				return this.timeSerie[this.currentValueIndex];
 			case FEATURE_MIN:
-				return this.timeSerie[this.currentValueIndex+1];
+				return this.timeSerie[this.currentValueIndex];
 			case FEATURE_RANGE:
-				return this.currentValueIndex;
+				return this.timeSerie[this.currentValueIndex];
 			default:
 				return 0;
 		}
@@ -361,15 +382,30 @@ public class FOOTPRINT_SUMMIT {
 			case FEATURE_WIDTH:
 				return 1;
 			case FEATURE_SURFACE:
-				return this.timeSerie[this.currentValueIndex+2];
+				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
+				return this.timeSerie[this.currentValueIndex+1];
+				}
+				return 0;
 			case FEATURE_MAX:
-				return this.timeSerie[this.currentValueIndex+2];
+				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
+				return this.timeSerie[this.currentValueIndex+1];
+				}
+				return 0;
 			case FEATURE_MIN:
-				return this.timeSerie[this.currentValueIndex+2];
+				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
+				return this.timeSerie[this.currentValueIndex+1];
+				}
+				return 0;
 			case FEATURE_RANGE:
-				return this.timeSerie[this.currentValueIndex+2];
+				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
+				return this.timeSerie[this.currentValueIndex+1];
+				}
+				return 0;
 			default:
-				return this.timeSerie[this.currentValueIndex+2];
+				if(this.timeSerie.length-1 >=this.currentValueIndex+1){
+				return this.timeSerie[this.currentValueIndex+1];
+				}
+				return 0;
 		}
 	}
 

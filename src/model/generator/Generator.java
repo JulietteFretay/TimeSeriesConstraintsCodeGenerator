@@ -45,6 +45,7 @@ public class Generator {
 		generateCodeBuffer.append("\tprivate int after; \n");
 		generateCodeBuffer.append("\tprivate HashMap<String, ArrayList<Integer>> timeSerieCounters; \n");
 		generateCodeBuffer.append("\tprivate HashMap<String, Integer> currentCounters; \n");
+		generateCodeBuffer.append("\tprivate HashMap<String, Integer> initCounters; \n");
 		
 		generateCodeBuffer.append("\tpublic static final String FEATURE_ONE = \"FEATURE_ONE\";\n");
 		generateCodeBuffer.append("\tpublic static final String FEATURE_WIDTH = \"FEATURE_WIDTH\";\n");
@@ -67,8 +68,9 @@ public class Generator {
 		generateCodeBuffer.append("\t\tthis.timeSerieStates = new String[nbElements];\n");
 		generateCodeBuffer.append("\t\tthis.timeSerieStates[0] = \"" + seedTemplate.getStartingState() + "\";\n");
 		generateCodeBuffer.append("\t\tthis.timeSerieLetters = new String[nbElements-1];\n");		
-		generateCodeBuffer.append("\t\tthis.timeSerieCounters = new HashMap<String, ArrayList<Integer>>();\n");		
+		generateCodeBuffer.append("\t\tthis.timeSerieCounters = new HashMap<String, ArrayList<Integer>>();\n");	
 		generateCodeBuffer.append("\t\tthis.currentCounters = new HashMap<String, Integer>() ;\n");	
+		generateCodeBuffer.append("\t\tthis.initCounters = new HashMap<String, Integer>() ;\n");	
 		for(InstructionFinal instruction : decorationTable.getInstructionsFinal()){
 			generateCodeBuffer.append("\t\tArrayList<Integer> resultList"+instruction.getVar()+" = new ArrayList<Integer>();\n");
 			generateCodeBuffer.append("\t\tfor(int i = 0; i < timeSerie.length-1; i++) {\n");
@@ -81,15 +83,17 @@ public class Generator {
 			generateCodeBuffer.append("\t\tArrayList<Integer> counterList"+instruction.getVar()+" = new ArrayList<Integer>();\n");
 			if(instruction.getFunction() != null && instruction.getFunction()){
 				generateCodeBuffer.append("\t\tcounterList"+instruction.getVar()+".add(new Integer("+instruction.getInit()+"(feature)));\n");
+				generateCodeBuffer.append("\t\tthis.initCounters.put(\""+instruction.getVar()+"\",new Integer("+instruction.getInit()+"(feature)));\n");
 			}else{
 				generateCodeBuffer.append("\t\tcounterList"+instruction.getVar()+".add(new Integer("+instruction.getInit()+"));\n");
+				generateCodeBuffer.append("\t\tthis.initCounters.put(\""+instruction.getVar()+"\",new Integer("+instruction.getInit()+"));\n");
 			}
 			
 			generateCodeBuffer.append("\t\tfor(int i = 0; i < timeSerie.length-2; i++) {\n");
-			generateCodeBuffer.append("\t\t\tcounterList"+instruction.getVar()+".add(new Integer(0));\n");
+			generateCodeBuffer.append("\t\t\tcounterList"+instruction.getVar()+".add(new Integer(this.initCounters.get(\""+instruction.getVar()+"\")));\n");
 			generateCodeBuffer.append("\t\t}\n");
 			generateCodeBuffer.append("\t\tthis.timeSerieCounters.put(\""+instruction.getVar()+"\",counterList"+instruction.getVar()+");\n");	
-			generateCodeBuffer.append("\t\tthis.currentCounters.put(\""+instruction.getVar()+"\",0);\n");	
+			generateCodeBuffer.append("\t\tthis.currentCounters.put(\""+instruction.getVar()+"\",this.initCounters.get(\""+instruction.getVar()+"\"));\n");	
 		}
 
 		//generateCodeBuffer.append("\t\twhile(this.currentSignIndex < timeSerieSigns.length - 1) {\n");

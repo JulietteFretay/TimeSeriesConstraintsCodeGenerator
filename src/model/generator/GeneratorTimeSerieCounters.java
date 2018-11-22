@@ -93,7 +93,7 @@ public class GeneratorTimeSerieCounters {
 							generateCodeBuffer.append(this.indentation+"\t\tthis.currentCounters.replace(\""+update.getVar()+"\",this.currentCounters.get(\""+update.getVar()+"\")); \n");	
 						}
 					}
-					generateCodeBuffer.append(this.indentation+"\t\tfor(int i=this.currentValueIndex;i<this.timeSerie.length-1;i++){ \n");
+					generateCodeBuffer.append(this.indentation+"\t\tfor(int i=this.currentSignIndex;i<this.timeSerie.length-1;i++){ \n");
 					generateCodeBuffer.append(this.indentation+"\t\t\tthis.timeSerieCounters.get(\""+update.getVar()+"\").set(i,this.currentCounters.get(\""+update.getVar()+"\")); \n");
 					generateCodeBuffer.append(this.indentation+"\t\t} \n");
 				}
